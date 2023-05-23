@@ -40,7 +40,7 @@ int pop(queue *&h, queue *&t) // удаление элемента из очер
     return i;
 }
 
-vector<vector<int>> input_adj_list(int N)
+vector<vector<int>> input_adj_list(int N) // создание списка смежности
 {
     ifstream in("input.txt");
     vector<vector<int>> Gr;
@@ -82,18 +82,18 @@ vector<int> walk_in_width(vector<vector<int>> Gr, int N, int A, int B) // обх
     queue *tail = NULL;
     vector<int> dist(N, N); // расстояния
     vector<int> p(N, -1);   // предки
-    dist[A] = 0;
-    push(visits, tail, A);
+    dist[A] = 0;            // дистанция до начала 0
+    push(visits, tail, A);  // посетили
     while (visits)
     {
-        int v = pop(visits, tail);
+        int v = pop(visits, tail); // смотрим голову не
         for (int u : Gr[v])
-        {
+        { // перебираем смежные вершины
             if (dist[u] > dist[v] + 1)
-            {
-                p[u] = v;
-                dist[u] = dist[v] + 1;
-                push(visits, tail, u);
+            {                          // смежная вершина далеко
+                p[u] = v;              // помечаем предка
+                dist[u] = dist[v] + 1; // обновляем дистанцию для смежной вершины
+                push(visits, tail, u); // посетили
             }
         }
     }
@@ -106,10 +106,10 @@ vector<int> walk_in_width(vector<vector<int>> Gr, int N, int A, int B) // обх
     int t = B;
     while (t != -1)
     {
-        path.push_back(t);
+        path.push_back(t); // по предкам находим путь в обратном порядке
         t = p[t];
     }
-    reverse(path.begin(), path.end()); // путь был в обр порядке - переворачиваем
+    reverse(path.begin(), path.end()); // путь был в обратном порядке - переворачиваем
     return path;
 }
 
@@ -127,8 +127,3 @@ int main()
     for (int i : way)
         cout << i << ' ';
 }
-
-/*
-A2
-E6
-*/

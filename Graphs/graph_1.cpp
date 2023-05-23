@@ -5,7 +5,7 @@
 
 using namespace std;
 
-map<int, list<int>> input_adj_list()
+map<int, list<int>> input_adj_list() // создание списка смежности
 {
     ifstream in("input.txt");
     map<int, list<int>> l_Adj;
@@ -33,7 +33,7 @@ map<int, list<int>> input_adj_list()
     return l_Adj;
 }
 
-void output_adj_list(map<int, list<int>> l_Adj)
+void output_adj_list(map<int, list<int>> l_Adj) // вывод списка смежности
 {
     for (auto it = l_Adj.begin(); it != l_Adj.end(); it++)
     {
