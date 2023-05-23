@@ -37,7 +37,7 @@ void print(list *h)
     }
 }
 
-void result(list *&h, list *&t, int x)
+void result(list *&h, list *&t, int x) // элементы меньше чем Х переносим влево, больше чем Х переносим вправо
 {
     list *p = h;
     list *res = NULL;

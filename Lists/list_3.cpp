@@ -13,10 +13,10 @@ void push(list *&h, list *&t, int x)
 {
     list *p = new list;
     p->inf = x;
-    p->next = nullptr;
+    p->next = NULL;
     if (!h && !t)
     {
-        p->prev = nullptr;
+        p->prev = NULL;
         h = p;
     }
     else
@@ -27,20 +27,20 @@ void push(list *&h, list *&t, int x)
     t = p;
 }
 
-void Swap(list *&Node1, list *&Node2)
+void Swap(list *&Node1, list *&Node2) // меняем указатели двух элементов
 {
     list *temp;
     temp = Node1->next;
-    Node1->next = Node2->next;
+    Node1->next = Node2->next; // меняем их следующие
     Node2->next = temp;
 
     if (Node1->next != NULL)
-        Node1->next->prev = Node1;
+        Node1->next->prev = Node1; // их следующим меняем предыдущие если не хвосты
     if (Node2->next != NULL)
         Node2->next->prev = Node2;
 
     temp = Node1->prev;
-    Node1->prev = Node2->prev;
+    Node1->prev = Node2->prev; // аналогично с предыдущими
     Node2->prev = temp;
 
     if (Node1->prev != NULL)
@@ -72,30 +72,31 @@ void QuickSort(list *h, list *t)
     while (i != t)
     {
         mn = min(i->inf, mn);
-        mx = max(i->inf, mx);
-        i = i->next;
-    }
-    
-    mn = min(i->inf, mn);
+        mx = max(i->inf, mx); // находим опорный элемент
+        i = i->next;          //
+    }                         //
+    mn = min(i->inf, mn);     // как среднее значение
     mx = max(i->inf, mx);
     int mid = (mx + mn) / 2;
+
     i = h;
+
     while (i != j)
     {
-        while (i->inf < mid && i != j)
-            i = i->next;
-        while (j->inf > mid && i != j)
-            j = j->prev;
+        while (i->inf < mid && i != j) // элементы меньше опорного
+            i = i->next;               // остаются левее
+        while (j->inf > mid && i != j) // элементы больше опорного
+            j = j->prev;               // остаются правее
         if (i != j)
         {
-            if (h == i && t == j)
-                swap(h, t);
-            else if (h == i)
-                h = j;
-            else if (t == j)
+            if (h == i && t == j) // мы не сдвинулись, надо менять местами указатели на голову и хвост
+                swap(h, t);       // меняю значения переменных, чтобы поменяли указатели
+            else if (h == i)      //
+                h = j;            // тоже самое, но отдельно для головы и хвоста
+            else if (t == j)      //
                 t = i;
-            Swap(i, j);
-            swap(i, j);
+            Swap(i, j); // меняю указатели
+            swap(i, j); // меняю значение переменных
             i = i->next;
         }
     }
@@ -116,7 +117,7 @@ void QuickSort(list *h, list *t)
 
 int main()
 {
-    list *head = nullptr, *tail = nullptr;
+    list *head = NULL, *tail = NULL;
     cout << "n = ";
     int n;
     cin >> n;
@@ -132,7 +133,7 @@ int main()
     list *r = head;
     while (r)
     {
-        head = r;
+        head = r; // возвращаемся к голове
         r = r->prev;
     }
 
