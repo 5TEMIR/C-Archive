@@ -36,12 +36,12 @@ void insert(tree *&tr, int x) // вставка
         tr = n; // если дерево пустое - корень
     else
     {
-        tree *y = tr;
-        while (y)
-        {                        // ищем куда вставлять
-            if (n->inf > y->inf) // правая ветка
-                if (y->right)
-                    y = y->right;
+        tree *y = tr; // указатель на исходное дерево
+        while (y)     // ищем куда вставлять
+        {
+            if (n->inf > y->inf)  // значение больше
+                if (y->right)     // есть правая ветка
+                    y = y->right; // переходим туда
                 else
                 {
                     n->parent = y; // узел становится правым ребенком
@@ -114,12 +114,12 @@ void Delete(tree *&tr, tree *v)
             if (!v->left)
             {                  // если есть правый ребенок
                 tr = v->right; // он становится корнем
-                v->parent = NULL;
+                tr->parent = NULL;
             }
             else
             { // аналогично для левого
                 tr = v->left;
-                v->parent = NULL;
+                tr->parent = NULL;
             }
         }
         else
@@ -163,7 +163,7 @@ void Delete(tree *&tr, tree *v)
     }
 }
 
-void result(tree *&tr) // Удаление нечётных элементов из дерева
+void result(tree *&tr) // Удаление нечётных элементов из дерева бинарного поиска
 {
     if (tr)
     {

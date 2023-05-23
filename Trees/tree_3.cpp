@@ -24,14 +24,14 @@ void create(tree *&tr, int n)
     {
         cin >> x;
         tr = node(x);
-        int nl = n / 2;
-        int nr = n - nl - 1;
+        int nl = n / 2;      // в левом поддереве будет половина от количества данных узлов
+        int nr = n - nl - 1; // в правом половина с вычетом корня
         create(tr->left, nl);
-        create(tr->right, nr);
+        create(tr->right, nr); // рекурсивно заполняем дерево начиная с левой ветки
     }
 }
 
-void preorder(tree *tr)
+void preorder(tree *tr) // прямой обход
 {
 
     if (tr)
@@ -70,7 +70,8 @@ int main()
     cout << endl;
     cout << "Nodes: ";
     preorder(tr);
-    cout << endl << endl;
+    cout << endl
+         << endl;
     find(tr, count);
     cout << "Leaves: " << count;
 }
