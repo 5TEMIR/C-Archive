@@ -7,7 +7,7 @@ using namespace std;
 
 void output_vec(vector<int> vctr)
 {
-    for (vector<int>::iterator iter = vctr.begin(); iter != vctr.end(); iter++) // РІС‹РІРѕРґ РєРѕРЅС‚РµР№РЅРµСЂР°
+    for (vector<int>::iterator iter = vctr.begin(); iter != vctr.end(); iter++) // вывод контейнера
         cout << *iter << " ";
     cout << "\n\n";
 }
@@ -20,7 +20,7 @@ int main()
     cin >> n;
     cout << "\n";
 
-    for (int i = 0; i < n; i++) // Р·Р°РїРѕР»РЅРµРЅРёРµ РєРѕРЅС‚РµР№РЅРµСЂР°
+    for (int i = 0; i < n; i++) // заполнение контейнера
     {
         cout << "vec[" << i << "] = ";
         cin >> x;
@@ -34,18 +34,18 @@ int main()
     cin >> X;
     cout << "\n";
 
-    vector<int> temp(vec); // РєРѕРїРёСЏ РІРµРєС‚РѕСЂР°
+    vector<int> temp(vec); // копия вектора
     replace_if(
         temp.begin(), temp.end(), [X](int x)
         { return x % X != 0; },
-        0);                                                                // Р·Р°РјРµРЅР°
-    cout << "sum = " << accumulate(temp.begin(), temp.end(), 0) << "\n\n"; // СЃСѓРјРјР° СЌР»РµРјРµРЅС‚РѕРІ РєСЂР°С‚РЅС‹Рµ X
+        0);                                                                // замена
+    cout << "sum = " << accumulate(temp.begin(), temp.end(), 0) << "\n\n"; // сумма элементов кратные X
 
-    int min = *min_element(vec.begin(), vec.end()); // РјРёРЅ РєРѕРЅС‚РµР№РЅРµСЂР°
+    int min = *min_element(vec.begin(), vec.end()); // мин контейнера
     cout << "min = " << min << "\n\n";
 
-    int max = *max_element(vec.begin(), vec.end()); // РјР°РєСЃ РєРѕРЅС‚РµР№РЅРµСЂР°
-    replace_if(                                     // Р·Р°РјРµРЅР° С‡РµС‚РЅС‹С… РЅР° РјР°РєСЃ
+    int max = *max_element(vec.begin(), vec.end()); // макс контейнера
+    replace_if(                                     // замена четных на макс
         vec.begin(), vec.end(), [](int x)
         { return x % 2 == 0; },
         max);

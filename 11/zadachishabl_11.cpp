@@ -2,7 +2,7 @@
 using namespace std;
 
 template <typename X>
-X **create(X c, int n, int m) //СЃРѕР·РґР°РЅРёРµ
+X **create(X c, int n, int m) //создание
 {
     X **massive = new X *[n];
     for (int i = 0; i < n; i++)
@@ -18,7 +18,7 @@ X **create(X c, int n, int m) //СЃРѕР·РґР°РЅРёРµ
 }
 
 template <typename X>
-X *create_x_str(X c, int m) //СЃРѕР·РґР°РЅРёРµ
+X *create_x_str(X c, int m) //создание
 {
     X *massive = new X[m];
     for (int i = 0; i < m; i++)
@@ -31,7 +31,7 @@ X *create_x_str(X c, int m) //СЃРѕР·РґР°РЅРёРµ
 }
 
 template <typename X>
-void print(X **massive, int n, int m) //РІС‹РІРѕРґ
+void print(X **massive, int n, int m) //вывод
 {
     for (int i = 0; i < n; i++, cout << endl)
         for (int j = 0; j < m; j++)
@@ -40,7 +40,7 @@ void print(X **massive, int n, int m) //РІС‹РІРѕРґ
 }
 
 template <typename X>
-void print_x_str(X *massive, int m) //РІС‹РІРѕРґ
+void print_x_str(X *massive, int m) //вывод
 {
     for (int j = 0; j < m; j++)
         cout << massive[j] << " ";
@@ -48,7 +48,7 @@ void print_x_str(X *massive, int m) //РІС‹РІРѕРґ
 }
 
 template <typename X>
-X **change(X **massive, int n, int m, X *massive_x_str) //РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ
+X **change(X **massive, int n, int m, X *massive_x_str) //преобразование
 {
     for (int i = 0; i < n; i++)
     {
@@ -72,7 +72,7 @@ int main()
     char c;
     do
     {
-        cout << "Р’РІРµРґРёС‚Рµ С‚РёРї:\n1 - int\n2 - double\n3 - char\n4 - float\n";
+        cout << "Введите тип:\n1 - int\n2 - double\n3 - char\n4 - float\n";
         int k;
         cin >> k;
         switch (k)
@@ -130,10 +130,10 @@ int main()
             break;
         }
         default:
-            cout << "РќРµРїСЂР°РІРёР»СЊРЅРѕ РІРІРµРґРµРЅС‹ РґР°РЅРЅС‹Рµ\n";
+            cout << "Неправильно введены данные\n";
         }
-        cout << "Р•С‰Рµ СЂР°Р·? Y - РґР°, N - РЅРµС‚\n";
-        cin >> c; // РїРѕРІС‚РѕСЂСЏРµРј Р·Р°РїСѓСЃРє РїСЂРѕРіСЂР°РјРјС‹ РїРѕРєР° РЅРµ РІРІРµРґРµРј N
+        cout << "Еще раз? Y - да, N - нет\n";
+        cin >> c; // повторяем запуск программы пока не введем N
     } while (c != 'N');
     return 0;
 }

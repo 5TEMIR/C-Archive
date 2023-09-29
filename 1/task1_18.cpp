@@ -5,7 +5,7 @@ using namespace std;
 int main()
 {
     setlocale(LC_ALL, "RUS");
-    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ‡ÐµÑ‚Ñ‹Ñ€ÐµÑ…Ð·Ð½Ð°Ñ‡Ð½Ð¾Ðµ Ñ†ÐµÐ»Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾ x" << endl;
+    cout << "Ââåäèòå ÷åòûðåõçíà÷íîå öåëîå ÷èñëî x" << endl;
     int x;
     cout << "x = ";
     cin >> x;
@@ -18,7 +18,7 @@ int main()
     int digit_3_new = (digit_1_old + digit_2_old + digit_3_old + digit_4_old) % digit_1_old;
     int digit_4_new = abs(digit_2_old - digit_4_old);
     int new_number = digit_1_new * 1000 + digit_2_new * 100 + digit_3_new * 10 + digit_4_new;
-    cout << "ÐÐ¾Ð²Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾ y = " << new_number << endl;
+    cout << "Íîâîå ÷èñëî y = " << new_number << endl;
     system("pause");
     return 0;
 }

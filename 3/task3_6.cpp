@@ -10,7 +10,7 @@ int main()
     cout << "b = ";
     cin >> b;
     int i = 0;
-    while (i < a) //С‡Р°СЃС‚РЅРѕРµ
+    while (i < a) //частное
     {
         i += b;
         p++;
@@ -20,7 +20,7 @@ int main()
     cout << "p = ";
     cout << p << endl;
     i = 0;
-    while (i < a) //РѕСЃС‚Р°С‚РѕРє
+    while (i < a) //остаток
         i += b;
     if (i == a)
         q = 0;

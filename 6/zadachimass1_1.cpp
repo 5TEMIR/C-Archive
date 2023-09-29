@@ -1,12 +1,12 @@
 #include <iostream>
 using namespace std;
 
-int **create(int n, int m) //СЃРѕР·РґР°РЅРёРµ РјР°СЃСЃРёРІР°
+int **create(int n, int m) //создание массива
 {
-    int **massive = new int *[n]; //РІС‹РґРµР»РµРЅРёРµ РїР°РјСЏС‚Рё РїРѕРґ РјР°СЃСЃРёРІ
+    int **massive = new int *[n]; //выделение памяти под массив
     for (int i = 0; i < n; i++)
         massive[i] = new int[m];
-    for (int i = 0; i < n; i++) //Р·Р°РїРѕР»РЅСЏРµРј РјР°СЃСЃРёРІ
+    for (int i = 0; i < n; i++) //заполняем массив
         for (int j = 0; j < m; j++)
         {
             massive[i][j] = i + 1;
@@ -14,7 +14,7 @@ int **create(int n, int m) //СЃРѕР·РґР°РЅРёРµ РјР°СЃСЃРёРІР°
     return massive;
 }
 
-void print(int **massive, int n, int m) //РІС‹РІРѕРґ РјР°СЃСЃРёРІР° РЅР° СЌРєСЂР°РЅ
+void print(int **massive, int n, int m) //вывод массива на экран
 {
     for (int i = 0; i < n; i++, cout << endl)
         for (int j = 0; j < m; j++)
@@ -22,7 +22,7 @@ void print(int **massive, int n, int m) //РІС‹РІРѕРґ РјР°СЃСЃРёРІР° РЅР° СЌРєСЂР
     cout << endl;
 }
 
-void change(int **massive, int n, int m) //РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ РјР°СЃСЃРёРІР°
+void change(int **massive, int n, int m) //преобразование массива
 {
     for (int i = 0; i < n / 2.0; i++)
         for (int j = 0; j < m; j++)
@@ -31,13 +31,13 @@ void change(int **massive, int n, int m) //РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ РјР°СЃСЃ
 
 int main()
 {
-    int n, m; //СЂР°Р·РјРµСЂРЅРѕСЃС‚СЊ РјР°СЃСЃРёРІР°
+    int n, m; //размерность массива
     cout << "n = ";
     cin >> n;
     cout << "m = ";
     cin >> m;
-    int **massive = create(n, m); //СЃРѕР·РґР°РЅРёРµ РјР°СЃСЃРёРІР°
-    print(massive, n, m);         //РІС‹РІРѕРґ РЅР° СЌРєСЂР°РЅ
+    int **massive = create(n, m); //создание массива
+    print(massive, n, m);         //вывод на экран
     change(massive, n, m);
     print(massive, n, m);
     return 0;

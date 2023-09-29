@@ -5,7 +5,7 @@ using namespace std;
 int main()
 {
     setlocale(LC_ALL, "RUS");
-    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð´Ð²Ð° Ñ‡Ð¸ÑÐ»Ð° x Ð¸ y, Ñ‡Ñ‚Ð¾Ð±Ñ‹ Ð²Ñ‹Ñ‡Ð¸ÑÐ»Ð¸Ñ‚ÑŒ F(x,y)" << endl;
+    cout << "Ââåäèòå äâà ÷èñëà x è y, ÷òîáû âû÷èñëèòü F(x,y)" << endl;
     float x, y;
     cout << " x = ";
     cin >> x;

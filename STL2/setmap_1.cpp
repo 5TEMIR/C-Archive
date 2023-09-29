@@ -7,12 +7,12 @@ using namespace std;
 
 void output_vec(vector<int> vctr)
 {
-    for (vector<int>::iterator iter = vctr.begin(); iter != vctr.end(); iter++) // РІС‹РІРѕРґ РєРѕРЅС‚РµР№РЅРµСЂР°
+    for (vector<int>::iterator iter = vctr.begin(); iter != vctr.end(); iter++) // вывод контейнера
         cout << *iter << " ";
     cout << "\n\n";
 }
 
-set<int> set_n(int n) //СЂР°Р·РґРµР»РµРЅРёСЏ С‡РёСЃР»Р° РЅР° С†РёС„СЂС‹
+set<int> set_n(int n) //разделения числа на цифры
 {
     set<int> S;
     while (n != 0)
@@ -30,7 +30,7 @@ int main()
     cout << "n = ";
     cin >> n;
 
-    for (int i = 0; i < n; i++) // Р·Р°РїРѕР»РЅРµРЅРёРµ РєРѕРЅС‚РµР№РЅРµСЂР°
+    for (int i = 0; i < n; i++) // заполнение контейнера
     {
         cout << "input[" << i << "] = ";
         cin >> x;
@@ -41,7 +41,7 @@ int main()
     output_vec(input);
 
     set<int> digits, double_digits, other_digits, result;
-    for (auto iter = input.begin(); iter != input.end(); iter++) //РЅР°С…РѕРґРёРј С†РёС„СЂС‹ РёР· РґРІСѓР·РЅР°С‡РЅС‹С… С‡РёСЃРµР» Рё С†РёС„СЂС‹ РёР· РѕСЃС‚Р°Р»СЊРЅС‹С… С‡РёСЃРµР»
+    for (auto iter = input.begin(); iter != input.end(); iter++) //находим цифры из двузначных чисел и цифры из остальных чисел
     {
         digits = set_n(*iter);
         if (*iter > 9 && *iter <= 99)
@@ -50,7 +50,7 @@ int main()
             other_digits.insert(digits.begin(), digits.end());
     }
 
-    set_difference(double_digits.begin(), double_digits.end(), other_digits.begin(), other_digits.end(), inserter(result, result.begin())); // РЅР°С…РѕРґРёРј СЂР°Р·РЅРѕСЃС‚СЊ
+    set_difference(double_digits.begin(), double_digits.end(), other_digits.begin(), other_digits.end(), inserter(result, result.begin())); // находим разность
     for (auto iter = result.begin(); iter != result.end(); iter++)
         cout << *iter << " ";
 

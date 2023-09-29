@@ -5,7 +5,7 @@
 
 using namespace std;
 
-map<int, list<int>> input_adj_list() // СЃРѕР·РґР°РЅРёРµ СЃРїРёСЃРєР° СЃРјРµР¶РЅРѕСЃС‚Рё
+map<int, list<int>> input_adj_list() // создание списка смежности
 {
     ifstream in("input.txt");
     map<int, list<int>> l_Adj;
@@ -33,7 +33,7 @@ map<int, list<int>> input_adj_list() // СЃРѕР·РґР°РЅРёРµ СЃРїРёСЃРєР° СЃРјРµР¶РЅ
     return l_Adj;
 }
 
-void output_adj_list(map<int, list<int>> l_Adj) // РІС‹РІРѕРґ СЃРїРёСЃРєР° СЃРјРµР¶РЅРѕСЃС‚Рё
+void output_adj_list(map<int, list<int>> l_Adj) // вывод списка смежности
 {
     for (auto it = l_Adj.begin(); it != l_Adj.end(); it++)
     {
@@ -45,7 +45,7 @@ void output_adj_list(map<int, list<int>> l_Adj) // РІС‹РІРѕРґ СЃРїРёСЃРєР° СЃРјР
     cout << endl;
 }
 
-void result(map<int, list<int>> l_Adj) // СЃС‚РµРїРµРЅСЊ РєР°Р¶РґРѕР№ РІРµСЂС€РёРЅС‹
+void result(map<int, list<int>> l_Adj) // степень каждой вершины
 {
     for (auto it = l_Adj.begin(); it != l_Adj.end(); it++)
     {

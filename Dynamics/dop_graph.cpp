@@ -3,36 +3,36 @@
 
 using namespace std;
 
-struct queue // РѕС‡РµСЂРµРґСЊ
+struct queue // очередь
 {
     int inf;
     queue *next;
 };
 
-void push(queue *&h, queue *&t, int x) // РІСЃС‚Р°РІРєР° СЌР»РµРјРµРЅС‚Р° РІ РѕС‡РµСЂРµРґСЊ
+void push(queue *&h, queue *&t, int x) // вставка элемента в очередь
 {
-    queue *r = new queue; // СЃРѕР·РґР°РµРј РЅРѕРІС‹Р№ СЌР»РµРјРµРЅС‚
+    queue *r = new queue; // создаем новый элемент
     r->inf = x;
-    r->next = NULL; // РІСЃРµРіРґР° РїРѕСЃР»РµРґРЅРёР№
+    r->next = NULL; // всегда последний
     if (!h && !t)
-    {              // РµСЃР»Рё РѕС‡РµСЂРµРґСЊ РїСѓСЃС‚Р°
-        h = t = r; // СЌС‚Рѕ Рё РіРѕР»РѕРІР° Рё С…РІРѕСЃС‚
+    {              // если очередь пуста
+        h = t = r; // это и голова и хвост
     }
     else
     {
-        t->next = r; // r - СЃР»РµРґСѓСЋС‰РёР№ РґР»СЏ С…РІРѕСЃС‚Р°
-        t = r;       // С‚РµРїРµСЂСЊ r - С…РІРѕСЃС‚
+        t->next = r; // r - следующий для хвоста
+        t = r;       // теперь r - хвост
     }
 }
 
-int pop(queue *&h, queue *&t) // СѓРґР°Р»РµРЅРёРµ СЌР»РµРјРµРЅС‚Р° РёР· РѕС‡РµСЂРµРґРё
+int pop(queue *&h, queue *&t) // удаление элемента из очереди
 {
-    queue *r = h;   // СЃРѕР·РґР°РµРј СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РіРѕР»РѕРІСѓ
-    int i = h->inf; // СЃРѕС…СЂР°РЅСЏРµРј Р·РЅР°С‡РµРЅРёРµ РіРѕР»РѕРІС‹
-    h = h->next;    // СЃРґРІРёРіР°РµРј СѓРєР°Р·Р°С‚РµР»СЊ РЅР° СЃР»РµРґСѓСЋС‰РёР№ СЌР»РµРјРµРЅС‚
-    if (!h)         // РµСЃР»Рё СѓРґР°Р»СЏРµРј РїРѕСЃР»РµРґРЅРёР№ СЌР»РµРјРµРЅС‚ РёР· РѕС‡РµСЂРµРґРё
+    queue *r = h;   // создаем указатель на голову
+    int i = h->inf; // сохраняем значение головы
+    h = h->next;    // сдвигаем указатель на следующий элемент
+    if (!h)         // если удаляем последний элемент из очереди
         t = NULL;
-    delete r; // СѓРґР°Р»СЏРµРј РїРµСЂРІС‹Р№ СЌР»РµРјРµРЅС‚
+    delete r; // удаляем первый элемент
     return i;
 }
 
@@ -44,33 +44,33 @@ struct stack
 
 void push(stack *&h, char x)
 {
-    stack *r = new stack; // СЃРѕР·РґР°РµРј РЅРѕРІС‹Р№ СЌР»РµРјРµРЅС‚
-    r->inf = x;           // РїРѕР»Рµ inf = x
-    r->next = h;          // СЃР»РµРґСѓСЋС‰РёРј СЌР»РµРјРµРЅС‚РѕРІ СЏРІР»СЏРµС‚СЃСЏ h
-    h = r;                // С‚РµРїРµСЂСЊ r СЏРІР»СЏРµС‚СЃСЏ РіРѕР»РѕРІРѕР№
+    stack *r = new stack; // создаем новый элемент
+    r->inf = x;           // поле inf = x
+    r->next = h;          // следующим элементов является h
+    h = r;                // теперь r является головой
 }
 
 char pop(stack *&h)
 {
-    char i = h->inf; // Р·РЅР°С‡РµРЅРёРµ РїРµСЂРІРѕРіРѕ СЌР»РµРјРµРЅС‚Р°
-    stack *r = h;    // СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РіРѕР»РѕРІСѓ СЃС‚РµРєР°
-    h = h->next;     // РїРµСЂРµРЅРѕСЃРёРј СѓРєР°Р·Р°С‚РµР»СЊ РЅР° СЃР»РµРґСѓСЋС‰РёР№ СЌР»РµРјРµРЅС‚
-    delete r;        // СѓРґР°Р»СЏРµРј РїРµСЂРІС‹Р№ СЌР»РµРјРµРЅС‚
-    return i;        // РІРѕР·РІСЂР°С‰Р°РµРј Р·РЅР°С‡РµРЅРёРµ
+    char i = h->inf; // значение первого элемента
+    stack *r = h;    // указатель на голову стека
+    h = h->next;     // переносим указатель на следующий элемент
+    delete r;        // удаляем первый элемент
+    return i;        // возвращаем значение
 }
 
 vector<vector<int>> input_adj_list()
 {
     int vertex_n;
     cout << "N = ";
-    cin >> vertex_n; // РІРІРѕРґРёРј РєРѕР»РёС‡РµСЃС‚РІРѕ РІРµСЂС€РёРЅ
+    cin >> vertex_n; // вводим количество вершин
     vector<vector<int>> Gr;
     Gr.resize(vertex_n);
     for (int i = 0; i < vertex_n; i++)
     {
         int vertex_n_adj;
         cout << i << ": ";
-        cin >> vertex_n_adj; // РІРІРѕРґРёРј РєРѕР»РёС‡РµСЃС‚РІРѕ СЃРјРµР¶РЅС‹С… РІРµСЂС€РёРЅ
+        cin >> vertex_n_adj; // вводим количество смежных вершин
         Gr[i].resize(vertex_n_adj);
         for (int j = 0; j < vertex_n_adj; j++)
         {
@@ -81,7 +81,7 @@ vector<vector<int>> input_adj_list()
     return Gr;
 }
 
-void output_adj_list(vector<vector<int>> Gr) // РІС‹РІРѕРґ СЃРїРёСЃРєР° СЃРјРµР¶РЅРѕСЃС‚Рё
+void output_adj_list(vector<vector<int>> Gr) // вывод списка смежности
 {
     for (int i = 0; i < Gr.size(); i++)
     {
@@ -95,7 +95,7 @@ void output_adj_list(vector<vector<int>> Gr) // РІС‹РІРѕРґ СЃРїРёСЃРєР° СЃРјРµР¶
     cout << endl;
 }
 
-void walk_in_width(vector<vector<int>> Gr, int N, int x) // РѕР±С…РѕРґ РІ С€РёСЂРёРЅСѓ
+void walk_in_width(vector<vector<int>> Gr, int N, int x) // обход в ширину
 {
     queue *visits = NULL;
     queue *tail = NULL;
@@ -123,7 +123,7 @@ void walk_in_width(vector<vector<int>> Gr, int N, int x) // РѕР±С…РѕРґ РІ С€РёСЂ
     cout << endl;
 }
 
-void walk_in_depth(vector<vector<int>> Gr, int N, int x) // РѕР±С…РѕРґ РІ РіР»СѓР±РёРЅСѓ
+void walk_in_depth(vector<vector<int>> Gr, int N, int x) // обход в глубину
 {
     stack *visits = NULL;
     int A[N];
@@ -168,7 +168,7 @@ int main()
     return 0;
 }
 
-/* РІСЃС‘ РєРѕРїРёСЂСѓРµРј Рё РІСЃС‚Р°РІР»СЏРµРј, РїСЂРёРјРµСЂ РёР· Р»РµРєС†РёРё
+/* всё копируем и вставляем, пример из лекции
 7
 4 1 2 4 5
 2 0 3

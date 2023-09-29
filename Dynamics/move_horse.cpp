@@ -6,36 +6,36 @@
 
 using namespace std;
 
-struct queue // РѕС‡РµСЂРµРґСЊ
+struct queue // очередь
 {
     pair<int, int> inf;
     queue *next;
 };
 
-void push(queue *&h, queue *&t, pair<int, int> x) // РІСЃС‚Р°РІРєР° СЌР»РµРјРµРЅС‚Р° РІ РѕС‡РµСЂРµРґСЊ
+void push(queue *&h, queue *&t, pair<int, int> x) // вставка элемента в очередь
 {
-    queue *r = new queue; // СЃРѕР·РґР°РµРј РЅРѕРІС‹Р№ СЌР»РµРјРµРЅС‚
+    queue *r = new queue; // создаем новый элемент
     r->inf = x;
-    r->next = NULL; // РІСЃРµРіРґР° РїРѕСЃР»РµРґРЅРёР№
+    r->next = NULL; // всегда последний
     if (!h && !t)
-    {              // РµСЃР»Рё РѕС‡РµСЂРµРґСЊ РїСѓСЃС‚Р°
-        h = t = r; // СЌС‚Рѕ Рё РіРѕР»РѕРІР° Рё С…РІРѕСЃС‚
+    {              // если очередь пуста
+        h = t = r; // это и голова и хвост
     }
     else
     {
-        t->next = r; // r - СЃР»РµРґСѓСЋС‰РёР№ РґР»СЏ С…РІРѕСЃС‚Р°
-        t = r;       // С‚РµРїРµСЂСЊ r - С…РІРѕСЃС‚
+        t->next = r; // r - следующий для хвоста
+        t = r;       // теперь r - хвост
     }
 }
 
-pair<int, int> pop(queue *&h, queue *&t) // СѓРґР°Р»РµРЅРёРµ СЌР»РµРјРµРЅС‚Р° РёР· РѕС‡РµСЂРµРґРё
+pair<int, int> pop(queue *&h, queue *&t) // удаление элемента из очереди
 {
-    queue *r = h;              // СЃРѕР·РґР°РµРј СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РіРѕР»РѕРІСѓ
-    pair<int, int> i = h->inf; // СЃРѕС…СЂР°РЅСЏРµРј Р·РЅР°С‡РµРЅРёРµ РіРѕР»РѕРІС‹
-    h = h->next;               // СЃРґРІРёРіР°РµРј СѓРєР°Р·Р°С‚РµР»СЊ РЅР° СЃР»РµРґСѓСЋС‰РёР№ СЌР»РµРјРµРЅС‚
-    if (!h)                    // РµСЃР»Рё СѓРґР°Р»СЏРµРј РїРѕСЃР»РµРґРЅРёР№ СЌР»РµРјРµРЅС‚ РёР· РѕС‡РµСЂРµРґРё
+    queue *r = h;              // создаем указатель на голову
+    pair<int, int> i = h->inf; // сохраняем значение головы
+    h = h->next;               // сдвигаем указатель на следующий элемент
+    if (!h)                    // если удаляем последний элемент из очереди
         t = NULL;
-    delete r; // СѓРґР°Р»СЏРµРј РїРµСЂРІС‹Р№ СЌР»РµРјРµРЅС‚
+    delete r; // удаляем первый элемент
     return i;
 }
 
@@ -52,8 +52,8 @@ bool isValid(int x, int y)
 map<pair<int, int>, vector<pair<int, int>>> input_adj_list(int x, int y)
 {
     map<pair<int, int>, vector<pair<int, int>>> Gr;
-    int row[] = {1, 1, -1, -1, 2, 2, -2, -2}; // СЃРјРµС‰РµРЅРёРµ РІ СЃС‚СЂРѕРєРµ
-    int col[] = {2, -2, 2, -2, 1, -1, 1, -1}; // СЃРјРµС‰РµРЅРёРµ РІ СЃС‚РѕР±С†Рµ
+    int row[] = {1, 1, -1, -1, 2, 2, -2, -2}; // смещение в строке
+    int col[] = {2, -2, 2, -2, 1, -1, 1, -1}; // смещение в стобце
     for (int k = 0; k < 8; k++)
     {
         int newX = x + row[k];
@@ -92,7 +92,7 @@ map<pair<int, int>, vector<pair<int, int>>> input_adj_list(int x, int y)
     return Gr;
 }
 
-void output_adj_list(map<pair<int, int>, vector<pair<int, int>>> Gr) // РІС‹РІРѕРґ СЃРїРёСЃРєР° СЃРјРµР¶РЅРѕСЃС‚Рё
+void output_adj_list(map<pair<int, int>, vector<pair<int, int>>> Gr) // вывод списка смежности
 {
     for (auto iter = Gr.begin(); iter != Gr.end(); iter++)
     {
@@ -103,16 +103,16 @@ void output_adj_list(map<pair<int, int>, vector<pair<int, int>>> Gr) // РІС‹РІРѕ
     }
 }
 
-vector<pair<int, int>> walk_in_width(map<pair<int, int>, vector<pair<int, int>>> Gr, int N, int x_s, int y_s, int x_e, int y_e) // РѕР±С…РѕРґ РІ С€РёСЂРёРЅСѓ
+vector<pair<int, int>> walk_in_width(map<pair<int, int>, vector<pair<int, int>>> Gr, int N, int x_s, int y_s, int x_e, int y_e) // обход в ширину
 {
     queue *visits = NULL;
     queue *tail = NULL;
-    map<pair<int, int>, int> dist; // СЂР°СЃСЃС‚РѕСЏРЅРёСЏ
+    map<pair<int, int>, int> dist; // расстояния
     for (auto iter = Gr.begin(); iter != Gr.end(); iter++)
     {
-        dist[iter->first] = N; // Р·Р°РґР°РµРј РјР°РєСЃРёРјР°Р»СЊРЅРѕРµ СЂР°СЃСЃС‚РѕСЏРЅРёРµ РґР»СЏ Р±СѓРґСѓС‰РµРіРѕ СЃСЂР°РІРЅРµРЅРёСЏ
+        dist[iter->first] = N; // задаем максимальное расстояние для будущего сравнения
     }
-    map<pair<int, int>, pair<int, int>> p; // РїСЂРµРґРєРё
+    map<pair<int, int>, pair<int, int>> p; // предки
     dist[pair(x_s, y_s)] = 0;
     push(visits, tail, pair(x_s, y_s));
     while (visits)
@@ -128,12 +128,12 @@ vector<pair<int, int>> walk_in_width(map<pair<int, int>, vector<pair<int, int>>>
             }
         }
     }
-    if (dist[pair(x_e, y_e)] == N) // РїСѓС‚Рё РЅРµС‚ - РїСѓСЃС‚Рѕ
+    if (dist[pair(x_e, y_e)] == N) // пути нет - пусто
     {
         return {};
     }
 
-    vector<pair<int, int>> path; // РЅР°С€ РїСѓС‚СЊ
+    vector<pair<int, int>> path; // наш путь
     pair<int, int> t = pair(x_e, y_e);
     while (true)
     {
@@ -143,7 +143,7 @@ vector<pair<int, int>> walk_in_width(map<pair<int, int>, vector<pair<int, int>>>
         else
             break;
     }
-    reverse(path.begin(), path.end()); // РїСѓС‚СЊ Р±С‹Р» РІ РѕР±СЂ РїРѕСЂСЏРґРєРµ - РїРµСЂРµРІРѕСЂР°С‡РёРІР°РµРј
+    reverse(path.begin(), path.end()); // путь был в обр порядке - переворачиваем
     return path;
 }
 

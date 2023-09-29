@@ -20,15 +20,15 @@ enum OperationsListStudent
 class student
 {
 private:
-    int Status;                                               // РІРµСЂРЅРѕ Р»Рё СЃРѕР·РґР°РЅ РѕР±СЉРµРєС‚
-    string FIO;                                               // Р¤РРћ
-    int NumberZachet;                                         // РЅРѕРјРµСЂ Р·Р°С‡С‘С‚РєРё
-    int Course;                                               // РєСѓСЂСЃ
-    int Naprav;                                               // РЅР°РїСЂР°РІР»РµРЅРёРµ
-    int NumberGroup;                                          // РЅРѕРјРµСЂ РіСЂСѓРїРїС‹
-    int NumGroup() { return Course * 100 + Naprav * 10 + 1; } // СЃРѕР·РґР°РЅРёРµ РЅРѕРјРµСЂР° РіСЂСѓРїРїС‹
-    bool ReadyDiplom = false;                                 // РіРѕС‚РѕРІР°СЏ РґРёРїР»РѕРјРЅР°СЏ СЂР°Р±РѕС‚Р°
-    bool ProtectionDiplom = false;                            // Р·Р°С‰РёС‚Р° РґРёРїР»РѕРјР°
+    int Status;                                               // верно ли создан объект
+    string FIO;                                               // ФИО
+    int NumberZachet;                                         // номер зачётки
+    int Course;                                               // курс
+    int Naprav;                                               // направление
+    int NumberGroup;                                          // номер группы
+    int NumGroup() { return Course * 100 + Naprav * 10 + 1; } // создание номера группы
+    bool ReadyDiplom = false;                                 // готовая дипломная работа
+    bool ProtectionDiplom = false;                            // защита диплома
 
 public:
     student(int NZ, int N, string F)
@@ -63,7 +63,7 @@ public:
     }
     ~student() {}
 
-    int getStatus() { return Status; } // РіРµС‚С‚РµСЂС‹
+    int getStatus() { return Status; } // геттеры
     string getFIO() { return FIO; }
     int getNumberZachet() { return NumberZachet; }
     int getNumberGroup() { return NumberGroup; }
@@ -72,7 +72,7 @@ public:
     bool getReadyDiplom() { return ReadyDiplom; }
     bool getProtectionDiplom() { return ProtectionDiplom; }
 
-    void SwapNaprav(int N) // РјРµС‚РѕРґ СЃРјРµРЅРёС‚СЊ РЅР°РїСЂР°РІР»РµРЅРёРµ
+    void SwapNaprav(int N) // метод сменить направление
     {
         if (Status == OK)
         {
@@ -81,7 +81,7 @@ public:
         }
     }
 
-    void SledCourse() // РјРµС‚РѕРґ РїРµСЂРµР№С‚Рё РЅР° СЃР»РµРґСѓСЋС‰РёР№ РєСѓСЂСЃ
+    void SledCourse() // метод перейти на следующий курс
     {
         if (Status == OK)
         {
@@ -99,42 +99,42 @@ public:
             ReadyDiplom = true;
     }
 
-    void ProtectDiplom() // РјРµС‚РѕРґ Р·Р°С‰РёС‚РёС‚СЊ РґРёРїР»РѕРј
+    void ProtectDiplom() // метод защитить диплом
     {
         if (Status == OK)
         {
             if (Course == 4 && ReadyDiplom)
                 ProtectionDiplom = true;
             else if (Course != 4)
-                cout << "РўС‹ РЅРµ РіРѕС‚РѕРІ, Р¶РґРё 4РіРѕ РєСѓСЂСЃР°\n";
+                cout << "Ты не готов, жди 4го курса\n";
             else
-                cout << "РўС‹ РЅРµ РіРѕС‚РѕРІ\n";
+                cout << "Ты не готов\n";
         }
     }
 
-    void trueOtchislenie() // РјРµС‚РѕРґ РїСЂР°РІРёР»СЊРЅРѕ РѕС‚С‡РёСЃР»РёС‚СЊСЃСЏ
+    void trueOtchislenie() // метод правильно отчислиться
     {
         if (Status == OK)
         {
             if (ProtectionDiplom)
-                cout << "РџРѕР·РґСЂР°РІР»СЏРµРј СЃ РїСЂР°РІРёР»СЊРЅС‹Рј РѕС‚С‡РёСЃР»РµРЅРёРµРј, " << FIO << "!\n";
+                cout << "Поздравляем с правильным отчислением, " << FIO << "!\n";
             else
-                cout << "РўС‹ РЅРµ РіРѕС‚РѕРІ, Р·Р°С‰РёС‚Рё СЃРІРѕР№ РґРёРїР»РѕРј\n";
+                cout << "Ты не готов, защити свой диплом\n";
         }
     }
 
-    bool operator==(student &s) // СЃСЂР°РІРЅРµРЅРёРµ СЃС‚СѓРґРµРЅС‚РѕРІ РїРѕ РЅРѕРјРµСЂСѓ Р·Р°С‡С‘С‚РєРё
+    bool operator==(student &s) // сравнение студентов по номеру зачётки
     {
         return (NumberZachet == s.getNumberZachet());
     }
 
-    friend ostream &operator<<(ostream &out, student s) // РІС‹РІРѕРґ РёРЅС„С‹
+    friend ostream &operator<<(ostream &out, student s) // вывод инфы
     {
-        out << "Р¤РРћ: " << s.FIO << endl
-            << "РљСѓСЂСЃ: " << s.Course << endl
-            << "РќР°РїСЂР°РІР»РµРЅРёРµ: " << s.Naprav << endl
-            << "Р“СЂСѓРїРїР°: " << s.NumberGroup << endl
-            << "Р—Р°С‡С‘С‚РєР° в„–" << s.NumberZachet << endl;
+        out << "ФИО: " << s.FIO << endl
+            << "Курс: " << s.Course << endl
+            << "Направление: " << s.Naprav << endl
+            << "Группа: " << s.NumberGroup << endl
+            << "Зачётка №" << s.NumberZachet << endl;
         return out;
     }
 };
@@ -203,27 +203,27 @@ public:
         }
         node *&h = head;
         node *&t = tail;
-        if (r == h && r == t) // РµРґРёРЅСЃС‚РІРµРЅРЅС‹Р№ СЌР»РµРјРµРЅС‚ СЃРїРёСЃРєР°
+        if (r == h && r == t) // единственный элемент списка
             h = t = NULL;
         else if (r == h)
-        {                // СѓРґР°Р»СЏРµРј РіРѕР»РѕРІСѓ СЃРїРёСЃРєР°
-            h = h->next; // СЃРґРІРёРіР°РµРј РіРѕР»РѕРІСѓ
+        {                // удаляем голову списка
+            h = h->next; // сдвигаем голову
             h->prev = NULL;
         }
         else if (r == t)
-        {                // СѓРґР°Р»СЏРµРј С…РІРѕСЃС‚ СЃРїРёСЃРєР°
-            t = t->prev; // СЃРґРІРёРіР°РµРј С…РІРѕСЃС‚
+        {                // удаляем хвост списка
+            t = t->prev; // сдвигаем хвост
             t->next = NULL;
         }
         else
         {
-            r->next->prev = r->prev; // РґР»СЏ СЃР»РµРґСѓСЋС‰РµРіРѕ РѕС‚ r РїСЂРµРґС‹РґСѓС‰РёРј СЃС‚Р°РЅРѕРІРёС‚СЃСЏ r->prev
-            r->prev->next = r->next; // РґР»СЏ РїСЂРµРґС‹РґСѓС‰РµРіРѕ РѕС‚ r СЃР»РµРґСѓСЋС‰РёРј СЃС‚Р°РЅРѕРІРёС‚СЃСЏ r->next
+            r->next->prev = r->prev; // для следующего от r предыдущим становится r->prev
+            r->prev->next = r->next; // для предыдущего от r следующим становится r->next
         }
-        delete r; // СѓРґР°Р»СЏРµРј r
+        delete r; // удаляем r
     }
 
-    void insert(student A, student *B) // РІСЃС‚Р°РІР»СЏРµРј РїРѕСЃР»Рµ A
+    void insert(student A, student *B) // вставляем после A
     {
         node *r = head;
         while (r != NULL)
@@ -234,32 +234,32 @@ public:
         }
         node *&h = head;
         node *&t = tail;
-        node *p = new node; // СЃРѕР·РґР°РµРј РЅРѕРІС‹Р№ СЌР»РµРјРµРЅС‚
+        node *p = new node; // создаем новый элемент
         p->inf = B;
         if (r == t)
-        {                   // РµСЃР»Рё РІСЃС‚Р°РІР»СЏРµРј РїРѕСЃР»Рµ С…РІРѕСЃС‚Р°
-            p->next = NULL; // РІСЃС‚Р°РІР»СЏРµРјС‹Р№ СЌР»-С‚ - РїРѕСЃР»РµРґРЅРёР№
-            p->prev = r;    // РІСЃС‚Р°РІР»СЏРµРј РїРѕСЃР»Рµ r
+        {                   // если вставляем после хвоста
+            p->next = NULL; // вставляемый эл-т - последний
+            p->prev = r;    // вставляем после r
             r->next = p;
-            t = p; // С‚РµРїРµСЂСЊ С…РІРѕСЃС‚ - p
+            t = p; // теперь хвост - p
         }
         else
-        {                      // РІСЃС‚Р°РІР»СЏРµРј РІ СЃРµСЂРµРґРёРЅСѓ СЃРїРёСЃРєР°
-            r->next->prev = p; // РґР»СЏ СЃР»РµРґСѓСЋС‰РµРіРѕ Р·Р° r СЌР»-С‚Р° РїСЂРµРґС‹РґСѓС‰РёР№ - p
-            p->next = r->next; // СЃР»РµРґСѓСЋС‰РёР№ Р·Р° p - СЃР»РµРґСѓСЋС‰РёР№ Р·Р° r
-            p->prev = r;       // p РІСЃС‚Р°РІР»СЏРµРј РїРѕСЃР»Рµ r
+        {                      // вставляем в середину списка
+            r->next->prev = p; // для следующего за r эл-та предыдущий - p
+            p->next = r->next; // следующий за p - следующий за r
+            p->prev = r;       // p вставляем после r
             r->next = p;
         }
     }
 
-    void execute(int oper) // РІС‹РїРѕР»РЅРµРЅРёСЏ Р·Р°РґР°РЅРЅРѕР№ РѕРїРµСЂР°С†РёРё РЅР°Рґ РєР°Р¶РґС‹Рј СЌР»РµРјРµРЅС‚РѕРј СЃРїРёСЃРєР°
+    void execute(int oper) // выполнения заданной операции над каждым элементом списка
     {
         node *r = head;
         switch (oper)
         {
         case 0:
             int N;
-            cout << "РќР°РїСЂР°РІР»РµРЅРёРµ: ";
+            cout << "Направление: ";
             cin >> N;
             while (r != NULL)
             {
@@ -298,7 +298,7 @@ public:
         }
     }
 
-    void print() // РІС‹РІРѕРґ СЌР»РµРјРµРЅС‚РѕРІ СЃРїРёСЃРєР°
+    void print() // вывод элементов списка
     {
         node *r = head;
         while (r != NULL)
@@ -313,7 +313,7 @@ public:
 int main()
 {
     setlocale(LC_ALL, "RUS");
-    student s1(20222649, 1, "РџС€РµРЅРёС‡РЅРёРєРѕРІ РЎС‚РµРјРёСЂ РњРёС…Р°Р№Р»РѕРІРёС‡");
+    student s1(20222649, 1, "Пшеничников Стемир Михайлович");
     cout << s1;
     cout << s1.getNumberGroup() << endl;
     s1.SwapNaprav(5);
@@ -330,7 +330,7 @@ int main()
     s1.ProtectDiplom();
     s1.trueOtchislenie();
 
-    student s2(20222650, 5, "РџС€РµРЅРёС‡РЅРёРєРѕРІ Р‘РѕРіРґР°РЅ РњРёС…Р°Р№Р»РѕРІРёС‡");
+    student s2(20222650, 5, "Пшеничников Богдан Михайлович");
     cout << s2.getNumberGroup() << endl;
     s2.SledCourse();
     s2.SledCourse();
@@ -343,8 +343,8 @@ int main()
     cout << s3;
     s3.ProtectDiplom();
 
-    student s4(20222650, 3, "РџС€РµРЅРёС‡РЅРёРєРѕРІ РњРёС…Р°РёР» РќРёРєРѕР»Р°РµРІРёС‡");
-    student s4(20222650, 3, "РџС€РµРЅРёС‡РЅРёРєРѕРІ РњРёС…Р°РёР» РќРёРєРѕР»Р°РµРІРёС‡");
+    student s4(20222650, 3, "Пшеничников Михаил Николаевич");
+    student s4(20222650, 3, "Пшеничников Михаил Николаевич");
 
     List group;
     group.push(&s1);
@@ -355,7 +355,7 @@ int main()
     group.print();
     group.push(&s4);
 
-    student s5(20222652, 3, "РњР°СЂРіРѕР»РёРЅ Р•С„РёРј Р“СЂРёРіРѕСЂСЊРµРІРёС‡");
+    student s5(20222652, 3, "Марголин Ефим Григорьевич");
     group.insert(s2, &s5);
     group.print();
 

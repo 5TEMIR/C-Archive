@@ -6,27 +6,27 @@
 using namespace std;
 
 struct date
-{ // РґР°С‚Р°
+{ // дата
     int dd, mm, yy;
 };
 
 struct people
-{                     // РґР°РЅРЅС‹Рµ Рѕ С‡РµР»РѕРІРµРєРµ
-    string Surname;   // С„Р°РјРёР»РёСЏ
-    string Position;  // РґРѕР»Р¶РЅРѕСЃС‚СЊ
-    date DateOfBirth; // РґР°С‚Р° СЂРѕР¶РґРµРЅРёСЏ
-    int XP;           // СЃС‚Р°Р¶ СЂР°Р±РѕС‚С‹
-    int Salary;       // Р·Р°СЂРїР»Р°С‚Р°
+{                     // данные о человеке
+    string Surname;   // фамилия
+    string Position;  // должность
+    date DateOfBirth; // дата рождения
+    int XP;           // стаж работы
+    int Salary;       // зарплата
 };
 
 date Str_to_Date(string str)
-{ // РёР· СЃС‚СЂРѕРєРё РІ РґР°С‚Сѓ
+{ // из строки в дату
     date x;
-    string temp = str.substr(0, 2); // РґРµРЅСЊ
+    string temp = str.substr(0, 2); // день
     x.dd = atoi(temp.c_str());
-    temp = str.substr(3, 2); // РјРµСЃСЏС†
+    temp = str.substr(3, 2); // месяц
     x.mm = atoi(temp.c_str());
-    temp = str.substr(6, 4); // РіРѕРґ
+    temp = str.substr(6, 4); // год
     x.yy = atoi(temp.c_str());
     return x;
 }
@@ -39,70 +39,70 @@ struct list
 };
 
 void push(list *&h, list *&t, people x)
-{                       // РІСЃС‚Р°РІРєР° СЌР»РµРјРµРЅС‚Р° РІ РєРѕРЅРµС† СЃРїРёСЃРєР°
-    list *r = new list; // СЃРѕР·РґР°РµРј РЅРѕРІС‹Р№ СЌР»РµРјРµРЅС‚
+{                       // вставка элемента в конец списка
+    list *r = new list; // создаем новый элемент
     r->inf = x;
-    r->next = NULL; // РІСЃРµРіРґР° РїРѕСЃР»РµРґРЅРёР№
+    r->next = NULL; // всегда последний
     if (!h && !t)
-    {                   // РµСЃР»Рё СЃРїРёСЃРѕРє РїСѓСЃС‚
-        r->prev = NULL; // РїРµСЂРІС‹Р№ СЌР»РµРјРµРЅС‚
-        h = r;          // СЌС‚Рѕ РіРѕР»РѕРІР°
+    {                   // если список пуст
+        r->prev = NULL; // первый элемент
+        h = r;          // это голова
     }
     else
     {
-        t->next = r; // r - СЃР»РµРґСѓСЋС‰РёР№ РґР»СЏ С…РІРѕСЃС‚Р°
-        r->prev = t; // С…РІРѕСЃС‚ - РїСЂРµРґС‹РґСѓС‰РёР№ РґР»СЏ r
+        t->next = r; // r - следующий для хвоста
+        r->prev = t; // хвост - предыдущий для r
     }
-    t = r; // r С‚РµРїРµСЂСЊ С…РІРѕСЃС‚
+    t = r; // r теперь хвост
 }
 
 void del_node(list *&h, list *&t, list *r)
-{                         // СѓРґР°Р»СЏРµРј РїРѕСЃР»Рµ r
-    if (r == h && r == t) // РµРґРёРЅСЃС‚РІРµРЅРЅС‹Р№ СЌР»РµРјРµРЅС‚ СЃРїРёСЃРєР°
+{                         // удаляем после r
+    if (r == h && r == t) // единственный элемент списка
         h = t = NULL;
     else if (r == h)
-    {                // СѓРґР°Р»СЏРµРј РіРѕР»РѕРІСѓ СЃРїРёСЃРєР°
-        h = h->next; // СЃРґРІРёРіР°РµРј РіРѕР»РѕРІСѓ
+    {                // удаляем голову списка
+        h = h->next; // сдвигаем голову
         h->prev = NULL;
     }
     else if (r == t)
-    {                // СѓРґР°Р»СЏРµРј С…РІРѕСЃС‚ СЃРїРёСЃРєР°
-        t = t->prev; // СЃРґРІРёРіР°РµРј С…РІРѕСЃС‚
+    {                // удаляем хвост списка
+        t = t->prev; // сдвигаем хвост
         t->next = NULL;
     }
     else
     {
-        r->next->prev = r->prev; // РґР»СЏ СЃР»РµРґСѓСЋС‰РµРіРѕ РѕС‚ r РїСЂРµРґС‹РґСѓС‰РёРј СЃС‚Р°РЅРѕРІРёС‚СЃСЏ r->prev
-        r->prev->next = r->next; // РґР»СЏ РїСЂРµРґС‹РґСѓС‰РµРіРѕ РѕС‚ r СЃР»РµРґСѓСЋС‰РёРј СЃС‚Р°РЅРѕРІРёС‚СЃСЏ r->next
+        r->next->prev = r->prev; // для следующего от r предыдущим становится r->prev
+        r->prev->next = r->next; // для предыдущего от r следующим становится r->next
     }
-    delete r; // СѓРґР°Р»СЏРµРј r
+    delete r; // удаляем r
 }
 
 void print(list *h)
-{                // РїРµС‡Р°С‚СЊ СЌР»РµРјРµРЅС‚РѕРІ СЃРїРёСЃРєР°
-    list *p = h; // СѓРєР·Р°С‚РµР»СЊ РЅР° РіРѕР»РѕРІСѓ
+{                // печать элементов списка
+    list *p = h; // укзатель на голову
     while (p)
-    { // РїРѕРєР° РЅРµ РґРѕС€Р»Рё РґРѕ РєРѕРЅС†Р° СЃРїРёСЃРєР°
+    { // пока не дошли до конца списка
         cout << p->inf.Surname << " have " << p->inf.Salary << "; ";
-        p = p->next; // РїРµСЂРµС…РѕРґ Рє СЃР»РµРґСѓСЋС‰РµРјСѓ СЌР»РµРјРµРЅС‚Сѓ
+        p = p->next; // переход к следующему элементу
     }
 }
 
 ifstream in("input.txt");
 
 vector<people> inFile()
-{ // РІРІРѕРґ РёР· С„Р°Р№Р»Р°
+{ // ввод из файла
     vector<people> x;
     people temp;
     while (in.peek() != EOF)
     {
-        in >> temp.Surname;  // С„Р°РјРёР»РёСЏ
-        in >> temp.Position; // РїРѕР·РёС†РёСЏ
-        string tmp;          // РґР°С‚Р° СЂРѕР¶РґРµРЅРёСЏ
+        in >> temp.Surname;  // фамилия
+        in >> temp.Position; // позиция
+        string tmp;          // дата рождения
         in >> tmp;
         temp.DateOfBirth = Str_to_Date(tmp);
-        in >> temp.XP;     // СЃС‚Р°Р¶ СЂР°Р±РѕС‚С‹
-        in >> temp.Salary; // Р·Р°СЂРїР»Р°С‚Р°
+        in >> temp.XP;     // стаж работы
+        in >> temp.Salary; // зарплата
         x.push_back(temp);
     }
     return x;
@@ -114,7 +114,7 @@ vector<pair<list *, list *>> create_hash_table(vector<people> A, int M)
     hash_table.resize(M);
     for (int i = 0; i < A.size(); i++)
     {
-        int k = A[i].Salary % M; // РјРµС‚РѕРґ РґРµР»РµРЅРёСЏ РїРѕ Р·Р°СЂРїР»Р°С‚Рµ
+        int k = A[i].Salary % M; // метод деления по зарплате
         push(hash_table[k].first, hash_table[k].second, A[i]);
     }
     return hash_table;

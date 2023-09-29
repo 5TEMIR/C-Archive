@@ -12,7 +12,7 @@ struct tree
 };
 
 tree *node(int x)
-{ // РЅР°С‡Р°Р»СЊРЅС‹Р№ СѓР·РµР»
+{ // начальный узел
     tree *n = new tree;
     n->inf = x;
     n->left = n->right = NULL;
@@ -20,41 +20,41 @@ tree *node(int x)
     return n;
 }
 
-void inorder(tree *tr) // СЃРёРјРјРµС‚СЂРёС‡РЅС‹Р№ РѕР±С…РѕРґ (Р›-Рљ-Рџ)
+void inorder(tree *tr) // симметричный обход (Л-К-П)
 {
     if (tr)
     {
-        inorder(tr->left);      // Р»РµРІРѕРµ
-        cout << tr->inf << ' '; // РєРѕСЂРµРЅСЊ
-        inorder(tr->right);     // РїСЂР°РІРѕРµ
+        inorder(tr->left);      // левое
+        cout << tr->inf << ' '; // корень
+        inorder(tr->right);     // правое
     }
 }
 
-void insert(tree *&tr, int x) // РІСЃС‚Р°РІРєР°
+void insert(tree *&tr, int x) // вставка
 {
     tree *n = node(x);
     if (!tr)
-        tr = n; // РµСЃР»Рё РґРµСЂРµРІРѕ РїСѓСЃС‚РѕРµ - РєРѕСЂРµРЅСЊ
+        tr = n; // если дерево пустое - корень
     else
     {
         tree *y = tr;
         while (y)
-        {                        // РёС‰РµРј РєСѓРґР° РІСЃС‚Р°РІР»СЏС‚СЊ
-            if (n->inf > y->inf) // РїСЂР°РІР°СЏ РІРµС‚РєР°
+        {                        // ищем куда вставлять
+            if (n->inf > y->inf) // правая ветка
                 if (y->right)
                     y = y->right;
                 else
                 {
-                    n->parent = y; // СѓР·РµР» СЃС‚Р°РЅРѕРІРёС‚СЃСЏ РїСЂР°РІС‹Рј СЂРµР±РµРЅРєРѕРј
+                    n->parent = y; // узел становится правым ребенком
                     y->right = n;
                     break;
                 }
-            else if (n->inf < y->inf) // Р»РµРІР°СЏ РІРµС‚РєР°
+            else if (n->inf < y->inf) // левая ветка
                 if (y->left)
                     y = y->left;
                 else
                 {
-                    n->parent = y; // СѓР·РµР» СЃС‚Р°РЅРѕРІРёС‚СЃСЏ Р»РµРІС‹Рј СЂРµР±РµРЅРєРѕРј
+                    n->parent = y; // узел становится левым ребенком
                     y->left = n;
                     break;
                 }
@@ -62,17 +62,17 @@ void insert(tree *&tr, int x) // РІСЃС‚Р°РІРєР°
     }
 }
 
-vector<int> result(tree *node, vector<int> v, int key) // РїСѓС‚СЊ РѕС‚ РєРѕСЂРЅСЏ РґРѕ X
+vector<int> result(tree *node, vector<int> v, int key) // путь от корня до X
 {
-    if (node == NULL) // РµСЃР»Рё РєРѕСЂРµРЅСЊ, РїСѓС‚Рё РЅРµС‚
+    if (node == NULL) // если корень, пути нет
         return v;
-    v.push_back(node->inf); // РІСЃС‚Р°РІР»СЏРµРј С€Р°Рі
+    v.push_back(node->inf); // вставляем шаг
     if (node->inf == key)
-        return v; // РІС‹РІРѕРґ РїСѓС‚Рё РµСЃР»Рё РґРѕС€Р»Рё
+        return v; // вывод пути если дошли
     if (v.back() != key)
-        v = result(node->left, v, key); // РЅРµ РґРѕС€Р»Рё, РїСЂРѕРґРѕР»Р¶Р°РµРј
+        v = result(node->left, v, key); // не дошли, продолжаем
         v = result(node->right, v, key);
-    if (v.back() != key) // СѓРґР°Р»СЏРµРј Р»РёС€РЅРёР№ С€Р°Рі
+    if (v.back() != key) // удаляем лишний шаг
         v.pop_back();
     return v;
 }

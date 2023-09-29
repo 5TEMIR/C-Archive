@@ -10,14 +10,14 @@ using namespace std;
 
 void output_vec(vector<pair<char, char>> vctr)
 {
-    for (auto iter = vctr.begin(); iter != vctr.end(); iter++) // РІС‹РІРѕРґ СЃР»РѕРІР°
+    for (auto iter = vctr.begin(); iter != vctr.end(); iter++) // вывод слова
         cout << (*iter).second << ' ';
     cout << "\n\n";
 }
 
 void output_alphabet(map<char, int> alphabet)
 {
-    for (auto iter = alphabet.begin(); iter != alphabet.end(); iter++) // РІС‹РІРѕРґ Р°Р»С„Р°РІРёС‚Р°
+    for (auto iter = alphabet.begin(); iter != alphabet.end(); iter++) // вывод алфавита
         if (iter->second == 0)
             cout << iter->first << ' ';
         else
@@ -27,10 +27,10 @@ void output_alphabet(map<char, int> alphabet)
 
 int RandomNum(int max)
 {
-    // РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РіРµРЅРµСЂР°С‚РѕСЂ СЃР»СѓС‡Р°Р№РЅС‹С… С‡РёСЃРµР»
+    // Установить генератор случайных чисел
     srand(time(NULL));
 
-    // РџРѕР»СѓС‡РёС‚СЊ СЃР»СѓС‡Р°Р№РЅРѕРµ С‡РёСЃР»Рѕ
+    // Получить случайное число
     int num = rand() % (max + 1);
 
     return num;
@@ -43,56 +43,56 @@ int main()
     cout << "\n\n";
     setlocale(LC_ALL, "rus");
     map<char, int> alphabet;
-    for (char s = 'Рђ'; s != 'РЇ' + 1; s++) // СЃРѕР·РґР°РЅРёРµ Рё РІС‹РІРѕРґ Р°Р»С„Р°РІРёС‚Р°
+    for (char s = 'А'; s != 'Я' + 1; s++) // создание и вывод алфавита
         alphabet[s] = 0;
     output_alphabet(alphabet);
 
     vector<string> words = {
-        "РіРѕРґ",
-        "С‡РµР»РѕРІРµРє",
-        "РІСЂРµРјСЏ",
-        "РґРµР»Рѕ",
-        "Р¶РёР·РЅСЊ",
-        "РґРµРЅСЊ",
-        "СЂСѓРєР°",
-        "СЂР°Р±РѕС‚Р°",
-        "СЃР»РѕРІРѕ",
-        "РјРµСЃС‚Рѕ",
-        "РІРѕРїСЂРѕСЃ",
-        "Р»РёС†Рѕ",
-        "РіР»Р°Р·",
-        "СЃС‚СЂР°РЅР°",
-        "РґСЂСѓРі",
-        "СЃС‚РѕСЂРѕРЅР°",
-        "РґРѕРј",
-        "СЃР»СѓС‡Р°Р№",
-        "СЂРµР±РµРЅРѕРє",
-        "РіРѕР»РѕРІР°",
-        "СЃРёСЃС‚РµРјР°",
-        "РІРёРґ",
-        "РєРѕРЅРµС†",
-        "РѕС‚РЅРѕС€РµРЅРёРµ",
-        "РіРѕСЂРѕРґ",
-        "С‡Р°СЃС‚СЊ",
-        "Р¶РµРЅС‰РёРЅР°",
-        "РїСЂРѕР±Р»РµРјР°",
-        "Р·РµРјР»СЏ",
-        "СЂРµС€РµРЅРёРµ",
+        "год",
+        "человек",
+        "время",
+        "дело",
+        "жизнь",
+        "день",
+        "рука",
+        "работа",
+        "слово",
+        "место",
+        "вопрос",
+        "лицо",
+        "глаз",
+        "страна",
+        "друг",
+        "сторона",
+        "дом",
+        "случай",
+        "ребенок",
+        "голова",
+        "система",
+        "вид",
+        "конец",
+        "отношение",
+        "город",
+        "часть",
+        "женщина",
+        "проблема",
+        "земля",
+        "решение",
     };
-    string WORD = words[RandomNum(words.size() - 1)]; // СЃРіРµРЅРµСЂРёСЂСѓРµРј СЃР»РѕРІРѕ
+    string WORD = words[RandomNum(words.size() - 1)]; // сгенерируем слово
     transform(WORD.begin(), WORD.end(), WORD.begin(), ::toupper);
 
     int move = 0, max_move = WORD.length() + WORD.length() / 2, count = 0;
     bool win = false;
 
-    vector<pair<char, char>> find_word; // Р·Р°РјРµРЅРёРј Р±СѓРєРІС‹ РЅР° _
+    vector<pair<char, char>> find_word; // заменим буквы на _
     for (int i = 0; i < WORD.length(); i++)
         find_word.push_back(make_pair(WORD[i], '_'));
 
     output_vec(find_word);
 
-    cout << "РҐРѕРґС‹: " << move << '\n';
-    cout << "РћРіСЂР°РЅРёС‡РµРЅРёРµ: " << max_move << "\n\n";
+    cout << "Ходы: " << move << '\n';
+    cout << "Ограничение: " << max_move << "\n\n";
 
     while (true)
     {
@@ -101,18 +101,18 @@ int main()
         cin >> letter_or_word;
         system("cls");
         transform(letter_or_word.begin(), letter_or_word.end(), letter_or_word.begin(), ::toupper);
-        if (letter_or_word.length() == 1 && move < max_move) // СѓРіР°РґР°РµРј Р±СѓРєРІСѓ
+        if (letter_or_word.length() == 1 && move < max_move) // угадаем букву
         {
-            if (alphabet.count(letter_or_word[0]) == 0) // РЅР°Р»РёС‡РёРµ СЃРёРјРІРѕР»Р° РІ Р°Р»С„Р°РІРёС‚Рµ
+            if (alphabet.count(letter_or_word[0]) == 0) // наличие символа в алфавите
             {
-                cout << "РўР°РєРѕР№ Р±СѓРєРІС‹ РЅРµС‚ РІ Р°Р»С„Р°РІРёС‚Рµ";
+                cout << "Такой буквы нет в алфавите";
             }
-            else // СЃРёРјРІРѕР» РµСЃС‚СЊ РІ Р°Р»С„Р°РІРёС‚Рµ
+            else // символ есть в алфавите
             {
                 move += 1;
                 if (alphabet[letter_or_word[0]] == 0)
                 {
-                    alphabet[letter_or_word[0]] = 1; // РїРѕРјРµС‡Р°РµРј Р±СѓРєРІСѓ
+                    alphabet[letter_or_word[0]] = 1; // помечаем букву
                     if (WORD.find(letter_or_word[0]) != WORD.npos)
                     {
                         for (int i = 0; i < WORD.length(); i++)
@@ -123,61 +123,61 @@ int main()
                             }
                         if (count == WORD.length())
                         {
-                            cout << "Р’С‹ РІС‹РёРіСЂР°Р»Рё"; // РїРѕР±РµРґР° Р·Р°СЃС‡РµС‚ РѕС‚РіР°РґРєРё РІСЃРµС… Р±СѓРєРІ
+                            cout << "Вы выиграли"; // победа засчет отгадки всех букв
                             win = true;
                         }
                     }
                     else
                     {
-                        cout << "РўР°РєРѕР№ Р±СѓРєРІС‹ РЅРµС‚ РІ СЃР»РѕРІРµ";
+                        cout << "Такой буквы нет в слове";
                     }
                 }
                 else
                 {
-                    cout << "Р­С‚Р° Р±СѓРєРІР° СѓР¶Рµ РІС‹Р±РёСЂР°Р»Р°СЃСЊ"; // РµСЃР»Рё РІС‹Р±РёСЂР°Р»Рё, РїСЂРµРґСѓРїСЂРµР¶РґР°РµРј
+                    cout << "Эта буква уже выбиралась"; // если выбирали, предупреждаем
                 }
             }
             cout << "\n\n";
             output_alphabet(alphabet);
             output_vec(find_word);
-            cout << "РҐРѕРґС‹: " << move << '\n';
-            cout << "РћРіСЂР°РЅРёС‡РµРЅРёРµ: " << max_move << "\n\n";
+            cout << "Ходы: " << move << '\n';
+            cout << "Ограничение: " << max_move << "\n\n";
             if (win)
                 break;
         }
-        else if (letter_or_word.length() > 1 && move < max_move) // СѓРіР°РґР°РµРј СЃР»РѕРІРѕ
+        else if (letter_or_word.length() > 1 && move < max_move) // угадаем слово
         {
             move += 1;
             if (letter_or_word == WORD)
             {
-                cout << "Р’С‹ РІС‹РёРіСЂР°Р»Рё";
+                cout << "Вы выиграли";
                 for (int i = 0; i < WORD.length(); i++)
-                    find_word[i].second = find_word[i].first; // РїРѕР±РµРґР° Р·Р°СЃС‡РµС‚ РѕС‚РіР°РґРєРё СЃР»РѕРІР°
+                    find_word[i].second = find_word[i].first; // победа засчет отгадки слова
                 win = true;
             }
             else
             {
-                cout << "Р’С‹ РЅРµ СѓРіР°РґР°Р»Рё";
+                cout << "Вы не угадали";
             }
             cout << "\n\n";
             output_alphabet(alphabet);
             output_vec(find_word);
-            cout << "РҐРѕРґС‹: " << move << '\n';
-            cout << "РћРіСЂР°РЅРёС‡РµРЅРёРµ: " << max_move << "\n\n";
+            cout << "Ходы: " << move << '\n';
+            cout << "Ограничение: " << max_move << "\n\n";
             if (win)
                 break;
         }
-        if (move == max_move && count != WORD.length()) // С…РѕРґС‹ Р·Р°РєРѕРЅС‡РёР»РёСЃСЊ СЃР»РѕРІРѕ РЅРµ СѓРіР°РґР°РЅРѕ
+        if (move == max_move && count != WORD.length()) // ходы закончились слово не угадано
         {
             system("cls");
-            cout << "Р’С‹ РїСЂРѕРёРіСЂР°Р»Рё";
+            cout << "Вы проиграли";
             for (int i = 0; i < WORD.length(); i++)
                 find_word[i].second = find_word[i].first;
             cout << "\n\n";
             output_alphabet(alphabet);
             output_vec(find_word);
-            cout << "РҐРѕРґС‹: " << move << '\n';
-            cout << "РћРіСЂР°РЅРёС‡РµРЅРёРµ: " << max_move << "\n\n";
+            cout << "Ходы: " << move << '\n';
+            cout << "Ограничение: " << max_move << "\n\n";
             break;
         }
     }

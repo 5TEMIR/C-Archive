@@ -6,7 +6,7 @@ using namespace std;
 
 void output_vec(vector<int> vctr)
 {
-    for (vector<int>::iterator iter = vctr.begin(); iter != vctr.end(); iter++) // РІС‹РІРѕРґ РєРѕРЅС‚РµР№РЅРµСЂР°
+    for (vector<int>::iterator iter = vctr.begin(); iter != vctr.end(); iter++) // вывод контейнера
         cout << *iter << " ";
     cout << "\n\n";
 }
@@ -18,7 +18,7 @@ int main()
     cout << "n = ";
     cin >> n;
 
-    for (int i = 0; i < n; i++) // Р·Р°РїРѕР»РЅРµРЅРёРµ РєРѕРЅС‚РµР№РЅРµСЂР°
+    for (int i = 0; i < n; i++) // заполнение контейнера
     {
         cout << "vec[" << i << "] = ";
         cin >> x;
@@ -28,9 +28,9 @@ int main()
 
     output_vec(vec);
 
-    int min = *min_element(vec.begin(), vec.end()); // РјРёРЅ РєРѕРЅС‚РµР№РЅРµСЂР°
+    int min = *min_element(vec.begin(), vec.end()); // мин контейнера
 
-    vector<int>::iterator iter_remove = remove(vec.begin(), vec.end(), min); // СѓРґР°Р»РµРЅРёРµ СЌР»РµРјРµРЅС‚Р°
+    vector<int>::iterator iter_remove = remove(vec.begin(), vec.end(), min); // удаление элемента
     vec.erase(iter_remove, vec.end());
 
     output_vec(vec);

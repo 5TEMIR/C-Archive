@@ -12,7 +12,7 @@ void task17()
     cout << "y = ";
     cin >> y;
     cout << "\n\n";
-    //ÑÐ¾Ð·Ð´Ð°Ð½Ð¸Ðµ
+    //ñîçäàíèå
     int *massive = new int[m];
     for (int i = 0; i < n; i++)
     {
@@ -20,11 +20,11 @@ void task17()
         cin >> massive[i];
     }
     cout << "\n\n";
-    //Ð²Ñ‹Ð²Ð¾Ð´
+    //âûâîä
     for (int i = 0; i < n; i++)
         cout << massive[i] << ' ';
     cout << "\n\n";
-    //Ð²ÑÑ‚Ð°Ð²ÐºÐ°
+    //âñòàâêà
     for (int i = 0; i < n; i++)
     {
         if (massive[i] % 10 == x)
@@ -38,7 +38,7 @@ void task17()
             i++;
         }
     }
-    //Ð²Ñ‹Ð²Ð¾Ð´
+    //âûâîä
     for (int i = 0; i < n; i++)
         cout << massive[i] << ' ';
     cout << endl;

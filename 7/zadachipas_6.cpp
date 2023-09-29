@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-int *create(int n) //СЃРѕР·РґР°РЅРёРµ РјР°СЃСЃРёРІР°
+int *create(int n) //создание массива
 {
     int *massive = new int[n + 1];
     for (int i = 0; i < n + 1; i++)
@@ -13,14 +13,14 @@ int *create(int n) //СЃРѕР·РґР°РЅРёРµ РјР°СЃСЃРёРІР°
     return massive;
 }
 
-void print(int *massive, int n) //РІС‹РІРѕРґ РјР°СЃСЃРёРІР° РЅР° СЌРєСЂР°РЅ
+void print(int *massive, int n) //вывод массива на экран
 {
     for (int i = 0; i < n + 1; i++)
         cout << massive[i] << " ";
     cout << endl;
 }
 
-void new_mnogochlen(int *massive, int *massive2, int n) //РЅРѕРІС‹Р№ РјРЅРѕРіРѕС‡Р»РµРЅ
+void new_mnogochlen(int *massive, int *massive2, int n) //новый многочлен
 {
     for (int k = 0; k < 2 + n + 1; k++)
     {

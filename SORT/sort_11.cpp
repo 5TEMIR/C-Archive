@@ -11,68 +11,68 @@ ifstream in("input.txt");
 ofstream out("output.txt");
 
 struct date
-{ // РґР°С‚Р°
+{ // дата
     int dd, mm, yy;
 };
 
 struct people
-{                     // РґР°РЅРЅС‹Рµ Рѕ С‡РµР»РѕРІРµРєРµ
-    string Surname;   // С„Р°РјРёР»РёСЏ
-    string Position;  // РґРѕР»Р¶РЅРѕСЃС‚СЊ
-    date DateOfBirth; // РґР°С‚Р° СЂРѕР¶РґРµРЅРёСЏ
-    int XP;           // СЃС‚Р°Р¶ СЂР°Р±РѕС‚С‹
-    int Salary;       // Р·Р°СЂРїР»Р°С‚Р°
+{                     // данные о человеке
+    string Surname;   // фамилия
+    string Position;  // должность
+    date DateOfBirth; // дата рождения
+    int XP;           // стаж работы
+    int Salary;       // зарплата
 };
 
 date Str_to_Date(string str)
-{ // РёР· СЃС‚СЂРѕРєРё РІ РґР°С‚Сѓ
+{ // из строки в дату
     date x;
-    string temp = str.substr(0, 2); // РґРµРЅСЊ
+    string temp = str.substr(0, 2); // день
     x.dd = atoi(temp.c_str());
-    temp = str.substr(3, 2); // РјРµСЃСЏС†
+    temp = str.substr(3, 2); // месяц
     x.mm = atoi(temp.c_str());
-    temp = str.substr(6, 4); // РіРѕРґ
+    temp = str.substr(6, 4); // год
     x.yy = atoi(temp.c_str());
     return x;
 }
 
 vector<people> inFile()
-{ // РІРІРѕРґ РёР· С„Р°Р№Р»Р°
+{ // ввод из файла
     vector<people> x;
     people temp;
     while (in.peek() != EOF)
     {
-        in >> temp.Surname;  // С„Р°РјРёР»РёСЏ
-        in >> temp.Position; // РїРѕР·РёС†РёСЏ
-        string tmp;          // РґР°С‚Р° СЂРѕР¶РґРµРЅРёСЏ
+        in >> temp.Surname;  // фамилия
+        in >> temp.Position; // позиция
+        string tmp;          // дата рождения
         in >> tmp;
         temp.DateOfBirth = Str_to_Date(tmp);
-        in >> temp.XP;     // СЃС‚Р°Р¶ СЂР°Р±РѕС‚С‹
-        in >> temp.Salary; // Р·Р°СЂРїР»Р°С‚Р°
+        in >> temp.XP;     // стаж работы
+        in >> temp.Salary; // зарплата
         x.push_back(temp);
     }
     return x;
 }
 
 void print(people x)
-{                                          // РІС‹РІРѕРґ РІ С„Р°Р№Р»
-    out << setw(10) << left << x.Surname;  // РїРѕ Р»РµРІРѕРјСѓ РєСЂР°СЋ, 10 РїРѕР·РёС†РёР№ РґР»СЏ С„Р°РјРёР»РёРё
-    out << left << setw(10) << x.Position; // 20 РїРѕР·РёС†РёР№ РґР»СЏ РґРѕР»Р¶РЅРѕСЃС‚Рё
+{                                          // вывод в файл
+    out << setw(10) << left << x.Surname;  // по левому краю, 10 позиций для фамилии
+    out << left << setw(10) << x.Position; // 20 позиций для должности
     if (x.DateOfBirth.dd < 10)
-        out << left << '0' << x.DateOfBirth.dd << '.'; // РґРѕР±Р°РІР»СЏРµРј 0
+        out << left << '0' << x.DateOfBirth.dd << '.'; // добавляем 0
     else
         out << left << x.DateOfBirth.dd << '.';
     if (x.DateOfBirth.mm < 10)
         out << '0' << x.DateOfBirth.mm << '.';
     else
         out << x.DateOfBirth.mm << '.';
-    out << left << setw(6) << x.DateOfBirth.yy;  // РЅР° РіРѕРґ 6 РїРѕР·РёС†РёР№
-    out << left << setw(4) << x.XP;              // СЃС‚Р°Р¶
-    out << left << setw(10) << x.Salary << endl; // Р·Р°РїСЂР»Р°С‚Р°
+    out << left << setw(6) << x.DateOfBirth.yy;  // на год 6 позиций
+    out << left << setw(4) << x.XP;              // стаж
+    out << left << setw(10) << x.Salary << endl; // запрлата
 }
 
 bool operator>(people a, people b)
-{ // РїРµСЂРµРѕРїСЂРµРґРµР»СЏРµРј РѕРїРµСЂР°С‚РѕСЂ > РІ СЃРѕРѕС‚РІРµСЃС‚РІРёРё СЃ СѓСЃР»РѕРІРёРµРј
+{ // переопределяем оператор > в соотвествии с условием
     if (a.Position > b.Position)
         return true;
     if (a.Position == b.Position && a.XP > b.XP)
