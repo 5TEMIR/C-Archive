@@ -344,6 +344,7 @@ int main()
     s3.ProtectDiplom();
 
     student s4(20222650, 3, "Пшеничников Михаил Николаевич");
+    student s4(20222650, 3, "Пшеничников Михаил Николаевич");
 
     List group;
     group.push(&s1);
