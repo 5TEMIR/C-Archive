@@ -7,11 +7,11 @@ int main()
     int N, i, j;
     cout << "N = ";
     cin >> N;
-    for (i = 3; N; i += 2) //цикл для первых N
+    for (i = 3; N; i += 2) //С†РёРєР» РґР»СЏ РїРµСЂРІС‹С… N
     {
         float sq = sqrt(i);
         bool prime = true;
-        for (j = 2; j <= sq; ++j) //цикл для нахождения простых
+        for (j = 2; j <= sq; ++j) //С†РёРєР» РґР»СЏ РЅР°С…РѕР¶РґРµРЅРёСЏ РїСЂРѕСЃС‚С‹С…
             if (i % j == 0)
             {
                 prime = false;

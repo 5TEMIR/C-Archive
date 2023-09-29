@@ -1,4 +1,4 @@
-// Дано предложение, содержащие знаки препинания. Найти самое длинное слово.
+// Р”Р°РЅРѕ РїСЂРµРґР»РѕР¶РµРЅРёРµ, СЃРѕРґРµСЂР¶Р°С‰РёРµ Р·РЅР°РєРё РїСЂРµРїРёРЅР°РЅРёСЏ. РќР°Р№С‚Рё СЃР°РјРѕРµ РґР»РёРЅРЅРѕРµ СЃР»РѕРІРѕ.
 
 // I was born ready, but i need help
 
@@ -10,21 +10,21 @@ int main()
 {
     string str, word_cache, word;
     cout << "STRING: ";
-    getline(cin, str); // ввод строки
+    getline(cin, str); // РІРІРѕРґ СЃС‚СЂРѕРєРё
     str += '.';
     int max_word = 0;
     for (int i = 0; i < str.length(); i++)
     {
         if (!isalpha(str[i]))
         {
-            if (word_cache.length() > max_word) // нахождение самого длинного слова
+            if (word_cache.length() > max_word) // РЅР°С…РѕР¶РґРµРЅРёРµ СЃР°РјРѕРіРѕ РґР»РёРЅРЅРѕРіРѕ СЃР»РѕРІР°
             {
                 word = word_cache; 
                 max_word = word_cache.length();
             }
             word_cache.clear();
         }
-        else if (isalpha(str[i])) // составление слова
+        else if (isalpha(str[i])) // СЃРѕСЃС‚Р°РІР»РµРЅРёРµ СЃР»РѕРІР°
         {
             word_cache += str[i];
         }

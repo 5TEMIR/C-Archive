@@ -7,7 +7,7 @@ using namespace std;
 
 void output_vec(vector<int> vctr)
 {
-    for (vector<int>::iterator iter = vctr.begin(); iter != vctr.end(); iter++) // вывод контейнера
+    for (vector<int>::iterator iter = vctr.begin(); iter != vctr.end(); iter++) // РІС‹РІРѕРґ РєРѕРЅС‚РµР№РЅРµСЂР°
         cout << *iter << " ";
     cout << "\n\n";
 }
@@ -21,7 +21,7 @@ int main()
     cout << "n1 = ";
     cin >> n1;
     cout << "\n";
-    for (int i = 0; i < n1; i++) // заполнение контейнера
+    for (int i = 0; i < n1; i++) // Р·Р°РїРѕР»РЅРµРЅРёРµ РєРѕРЅС‚РµР№РЅРµСЂР°
     {
         cout << "vec1[" << i << "] = ";
         cin >> x;
@@ -32,7 +32,7 @@ int main()
     cout << "n2 = ";
     cin >> n2;
     cout << "\n";
-    for (int i = 0; i < n2; i++) // заполнение контейнера
+    for (int i = 0; i < n2; i++) // Р·Р°РїРѕР»РЅРµРЅРёРµ РєРѕРЅС‚РµР№РЅРµСЂР°
     {
         cout << "vec2[" << i << "] = ";
         cin >> x;
@@ -45,20 +45,20 @@ int main()
     output_vec(vec2);
 
     vector<int>::iterator iter_remove1 = remove_if(vec1.begin(), vec1.end(), [](int e)
-                                                   { return e % 2 == 0; }); // удаление четных в первом
+                                                   { return e % 2 == 0; }); // СѓРґР°Р»РµРЅРёРµ С‡РµС‚РЅС‹С… РІ РїРµСЂРІРѕРј
     vec1.erase(iter_remove1, vec1.end());
 
     output_vec(vec1);
 
     vector<int>::iterator iter_remove2 = remove_if(vec2.begin(), vec2.end(), [](int e)
-                                                   { return e % 2 != 0; }); // удаление нечетных во втором
+                                                   { return e % 2 != 0; }); // СѓРґР°Р»РµРЅРёРµ РЅРµС‡РµС‚РЅС‹С… РІРѕ РІС‚РѕСЂРѕРј
     vec2.erase(iter_remove2, vec2.end());
 
     output_vec(vec2);
 
-    vec1.insert(vec1.end(), vec2.begin(), vec2.end()); // объединение
+    vec1.insert(vec1.end(), vec2.begin(), vec2.end()); // РѕР±СЉРµРґРёРЅРµРЅРёРµ
 
-    sort(vec1.begin(), vec1.end()); // сортировка
+    sort(vec1.begin(), vec1.end()); // СЃРѕСЂС‚РёСЂРѕРІРєР°
 
     output_vec(vec1);
 

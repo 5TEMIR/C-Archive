@@ -1,12 +1,12 @@
 #include <iostream>
 using namespace std;
 
-int **create(int n, int m) //создание массива
+int **create(int n, int m) //СЃРѕР·РґР°РЅРёРµ РјР°СЃСЃРёРІР°
 {
-    int **massive = new int *[2 * n]; //выделение памяти под массив
+    int **massive = new int *[2 * n]; //РІС‹РґРµР»РµРЅРёРµ РїР°РјСЏС‚Рё РїРѕРґ РјР°СЃСЃРёРІ
     for (int i = 0; i < 2 * n; i++)
         massive[i] = new int[m];
-    for (int i = 0; i < n; i++) //заполняем массив
+    for (int i = 0; i < n; i++) //Р·Р°РїРѕР»РЅСЏРµРј РјР°СЃСЃРёРІ
         for (int j = 0; j < m; j++)
         {
             cout << "massive[" << i << "][";
@@ -17,7 +17,7 @@ int **create(int n, int m) //создание массива
     return massive;
 }
 
-void print(int **massive, int n, int m) //вывод массива на экран
+void print(int **massive, int n, int m) //РІС‹РІРѕРґ РјР°СЃСЃРёРІР° РЅР° СЌРєСЂР°РЅ
 {
     for (int i = 0; i < n; i++, cout << endl)
         for (int j = 0; j < m; j++)
@@ -25,7 +25,7 @@ void print(int **massive, int n, int m) //вывод массива на экран
     cout << endl;
 }
 
-int *create_x(int n) //создание массива
+int *create_x(int n) //СЃРѕР·РґР°РЅРёРµ РјР°СЃСЃРёРІР°
 {
     int *massive = new int[n];
     for (int i = 0; i < n; i++)
@@ -37,7 +37,7 @@ int *create_x(int n) //создание массива
     return massive;
 }
 
-void print_x(int *massive, int n) //вывод массива на экран
+void print_x(int *massive, int n) //РІС‹РІРѕРґ РјР°СЃСЃРёРІР° РЅР° СЌРєСЂР°РЅ
 {
     for (int i = 0; i < n; i++)
         cout << massive[i] << " ";
@@ -71,16 +71,16 @@ void past(int **massive, int n, int m, int *X)
 
 int main()
 {
-    int n, m; //размерность массива
+    int n, m; //СЂР°Р·РјРµСЂРЅРѕСЃС‚СЊ РјР°СЃСЃРёРІР°
     cout << "n = ";
     cin >> n;
     cout << "m = ";
     cin >> m;
     cout << endl;
     int *X = create_x(m);
-    int **massive = create(n, m); //создание массива
+    int **massive = create(n, m); //СЃРѕР·РґР°РЅРёРµ РјР°СЃСЃРёРІР°
     print_x(X, m);
-    print(massive, n, m); //вывод на экран
+    print(massive, n, m); //РІС‹РІРѕРґ РЅР° СЌРєСЂР°РЅ
     past(massive, n, m, X);
     return 0;
 }

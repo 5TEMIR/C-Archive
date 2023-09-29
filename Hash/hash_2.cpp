@@ -6,27 +6,27 @@
 using namespace std;
 
 struct date
-{ // дата
+{ // РґР°С‚Р°
     int dd, mm, yy;
 };
 
 struct people
-{                     // данные о человеке
-    string Surname;   // фамилия
-    string Position;  // должность
-    date DateOfBirth; // дата рождения
-    int XP;           // стаж работы
-    int Salary;       // зарплата
+{                     // РґР°РЅРЅС‹Рµ Рѕ С‡РµР»РѕРІРµРєРµ
+    string Surname;   // С„Р°РјРёР»РёСЏ
+    string Position;  // РґРѕР»Р¶РЅРѕСЃС‚СЊ
+    date DateOfBirth; // РґР°С‚Р° СЂРѕР¶РґРµРЅРёСЏ
+    int XP;           // СЃС‚Р°Р¶ СЂР°Р±РѕС‚С‹
+    int Salary;       // Р·Р°СЂРїР»Р°С‚Р°
 };
 
 date Str_to_Date(string str)
-{ // из строки в дату
+{ // РёР· СЃС‚СЂРѕРєРё РІ РґР°С‚Сѓ
     date x;
-    string temp = str.substr(0, 2); // день
+    string temp = str.substr(0, 2); // РґРµРЅСЊ
     x.dd = atoi(temp.c_str());
-    temp = str.substr(3, 2); // месяц
+    temp = str.substr(3, 2); // РјРµСЃСЏС†
     x.mm = atoi(temp.c_str());
-    temp = str.substr(6, 4); // год
+    temp = str.substr(6, 4); // РіРѕРґ
     x.yy = atoi(temp.c_str());
     return x;
 }
@@ -34,18 +34,18 @@ date Str_to_Date(string str)
 ifstream in("input.txt");
 
 vector<people> inFile()
-{ // ввод из файла
+{ // РІРІРѕРґ РёР· С„Р°Р№Р»Р°
     vector<people> x;
     people temp;
     while (in.peek() != EOF)
     {
-        in >> temp.Surname;  // фамилия
-        in >> temp.Position; // позиция
-        string tmp;          // дата рождения
+        in >> temp.Surname;  // С„Р°РјРёР»РёСЏ
+        in >> temp.Position; // РїРѕР·РёС†РёСЏ
+        string tmp;          // РґР°С‚Р° СЂРѕР¶РґРµРЅРёСЏ
         in >> tmp;
         temp.DateOfBirth = Str_to_Date(tmp);
-        in >> temp.XP;     // стаж работы
-        in >> temp.Salary; // зарплата
+        in >> temp.XP;     // СЃС‚Р°Р¶ СЂР°Р±РѕС‚С‹
+        in >> temp.Salary; // Р·Р°СЂРїР»Р°С‚Р°
         x.push_back(temp);
     }
     return x;
@@ -57,11 +57,11 @@ vector<people> create_hash_table(vector<people> A, int M)
     hash_table.resize(M);
     for (int i = 0; i < A.size(); i++)
     {
-        int k = A[i].DateOfBirth.yy % M; // вспомогательный метод по делению
+        int k = A[i].DateOfBirth.yy % M; // РІСЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹Р№ РјРµС‚РѕРґ РїРѕ РґРµР»РµРЅРёСЋ
         int j = 0;
         for (int h = 0; h < M; h++)
         {
-            int p = (k + j) % M; // основной метод линейный
+            int p = (k + j) % M; // РѕСЃРЅРѕРІРЅРѕР№ РјРµС‚РѕРґ Р»РёРЅРµР№РЅС‹Р№
             if (hash_table[p].DateOfBirth.yy == 0)
             {
                 hash_table[p] = A[i];

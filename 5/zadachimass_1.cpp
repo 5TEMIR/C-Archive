@@ -19,7 +19,7 @@ int main()
     cout << endl;
 
     int a, b, sum = 0;
-    cout << "Èíòåğâàë:" << endl;
+    cout << "Ğ˜Ğ½Ñ‚ĞµÑ€Ğ²Ğ°Ğ»:" << endl;
     cout << "a = ";
     cin >> a;
     cout << "b = ";
@@ -30,7 +30,7 @@ int main()
             sum += mas[a - 1];
     }
     if (sum == 0)
-        cout << "÷åòíûõ ıëåìåíòîâ íåò";
+        cout << "Ñ‡ĞµÑ‚Ğ½Ñ‹Ñ… ÑĞ»ĞµĞ¼ĞµĞ½Ñ‚Ğ¾Ğ² Ğ½ĞµÑ‚";
     else
         cout << sum;
     return 0;

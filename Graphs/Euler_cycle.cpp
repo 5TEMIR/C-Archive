@@ -13,22 +13,22 @@ struct stack
 
 void push(stack *&h, int x)
 {
-    stack *r = new stack; // создаем новый элемент
-    r->inf = x;           // поле inf = x
-    r->next = h;          // следующим элементов является h
-    h = r;                // теперь r является головой
+    stack *r = new stack; // СЃРѕР·РґР°РµРј РЅРѕРІС‹Р№ СЌР»РµРјРµРЅС‚
+    r->inf = x;           // РїРѕР»Рµ inf = x
+    r->next = h;          // СЃР»РµРґСѓСЋС‰РёРј СЌР»РµРјРµРЅС‚РѕРІ СЏРІР»СЏРµС‚СЃСЏ h
+    h = r;                // С‚РµРїРµСЂСЊ r СЏРІР»СЏРµС‚СЃСЏ РіРѕР»РѕРІРѕР№
 }
 
 int pop(stack *&h)
 {
-    int i = h->inf; // значение первого элемента
-    stack *r = h;   // указатель на голову стека
-    h = h->next;    // переносим указатель на следующий элемент
-    delete r;       // удаляем первый элемент
-    return i;       // возвращаем значение
+    int i = h->inf; // Р·РЅР°С‡РµРЅРёРµ РїРµСЂРІРѕРіРѕ СЌР»РµРјРµРЅС‚Р°
+    stack *r = h;   // СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РіРѕР»РѕРІСѓ СЃС‚РµРєР°
+    h = h->next;    // РїРµСЂРµРЅРѕСЃРёРј СѓРєР°Р·Р°С‚РµР»СЊ РЅР° СЃР»РµРґСѓСЋС‰РёР№ СЌР»РµРјРµРЅС‚
+    delete r;       // СѓРґР°Р»СЏРµРј РїРµСЂРІС‹Р№ СЌР»РµРјРµРЅС‚
+    return i;       // РІРѕР·РІСЂР°С‰Р°РµРј Р·РЅР°С‡РµРЅРёРµ
 }
 
-vector<vector<int>> input_adj_list(int N) // смежный список для неориентированного графа
+vector<vector<int>> input_adj_list(int N) // СЃРјРµР¶РЅС‹Р№ СЃРїРёСЃРѕРє РґР»СЏ РЅРµРѕСЂРёРµРЅС‚РёСЂРѕРІР°РЅРЅРѕРіРѕ РіСЂР°С„Р°
 {
     ifstream in("input_Euler.txt");
     vector<vector<int>> Gr;
@@ -53,7 +53,7 @@ vector<vector<int>> input_adj_list(int N) // смежный список для неориентированно
     return Gr;
 }
 
-void output_adj_list(vector<vector<int>> Gr) // вывод списка смежности
+void output_adj_list(vector<vector<int>> Gr) // РІС‹РІРѕРґ СЃРїРёСЃРєР° СЃРјРµР¶РЅРѕСЃС‚Рё
 {
     for (int i = 0; i < Gr.size(); i++)
     {
@@ -72,7 +72,7 @@ vector<vector<int>> l_Adj = input_adj_list(N);
 // int pr[N];
 // int used[N];
 
-int vert_rate(vector<vector<int>> Gr, int vert) // степень вершины
+int vert_rate(vector<vector<int>> Gr, int vert) // СЃС‚РµРїРµРЅСЊ РІРµСЂС€РёРЅС‹
 {
     int rate = 0;
     for (int j = 0; j < Gr[vert].size(); j++)
@@ -84,14 +84,14 @@ void result()
 {
     vector<int> res;
 
-    int *rates = new int[N]; // определяем степеь каждой вершины
+    int *rates = new int[N]; // РѕРїСЂРµРґРµР»СЏРµРј СЃС‚РµРїРµСЊ РєР°Р¶РґРѕР№ РІРµСЂС€РёРЅС‹
     for (int i = 0; i < N; i++)
         rates[i] = vert_rate(l_Adj, i);
 
-    int v1 = -1, v2 = -1; // ставим флаги
+    int v1 = -1, v2 = -1; // СЃС‚Р°РІРёРј С„Р»Р°РіРё
     for (int i = 0; i < N; i++)
     {
-        if (rates[i] % 2 != 0) // ищем вершины с нечетной степенью
+        if (rates[i] % 2 != 0) // РёС‰РµРј РІРµСЂС€РёРЅС‹ СЃ РЅРµС‡РµС‚РЅРѕР№ СЃС‚РµРїРµРЅСЊСЋ
         {
             if (v1 == -1)
                 v1 = i;
@@ -102,34 +102,34 @@ void result()
         }
     }
 
-    if (v1 != -1) // есть вершины с нечетной степенью
+    if (v1 != -1) // РµСЃС‚СЊ РІРµСЂС€РёРЅС‹ СЃ РЅРµС‡РµС‚РЅРѕР№ СЃС‚РµРїРµРЅСЊСЋ
     {
-        l_Adj[v1].push_back(v2); // добовляем ребро
+        l_Adj[v1].push_back(v2); // РґРѕР±РѕРІР»СЏРµРј СЂРµР±СЂРѕ
         l_Adj[v2].push_back(v1);
         sort(l_Adj[v1].begin(), l_Adj[v1].end());
         sort(l_Adj[v2].begin(), l_Adj[v2].end());
     }
 
-    stack *visits = NULL; // начинаем посещать вершины
+    stack *visits = NULL; // РЅР°С‡РёРЅР°РµРј РїРѕСЃРµС‰Р°С‚СЊ РІРµСЂС€РёРЅС‹
     push(visits, v1);
 
     while (visits)
     {
-        int vert = visits->inf;          // смотрим голову
-        if (vert_rate(l_Adj, vert) != 0) // есть степнь
+        int vert = visits->inf;          // СЃРјРѕС‚СЂРёРј РіРѕР»РѕРІСѓ
+        if (vert_rate(l_Adj, vert) != 0) // РµСЃС‚СЊ СЃС‚РµРїРЅСЊ
         {
-            int vert_adj = l_Adj[vert][0]; // находим смежную ей вершину
+            int vert_adj = l_Adj[vert][0]; // РЅР°С…РѕРґРёРј СЃРјРµР¶РЅСѓСЋ РµР№ РІРµСЂС€РёРЅСѓ
             push(visits, vert_adj);
-            l_Adj[vert].erase(l_Adj[vert].begin()); // удаляем ребро
+            l_Adj[vert].erase(l_Adj[vert].begin()); // СѓРґР°Р»СЏРµРј СЂРµР±СЂРѕ
             l_Adj[vert_adj].erase(remove(l_Adj[vert_adj].begin(), l_Adj[vert_adj].end(), vert));
         }
-        else // степени нет
+        else // СЃС‚РµРїРµРЅРё РЅРµС‚
         {
-            res.push_back(vert); // добовляем в результат
+            res.push_back(vert); // РґРѕР±РѕРІР»СЏРµРј РІ СЂРµР·СѓР»СЊС‚Р°С‚
             pop(visits);
         }
     }
-    if (v1 != -1) // есть вершины с нечетной степенью, то есть наше фиктивное ребро
+    if (v1 != -1) // РµСЃС‚СЊ РІРµСЂС€РёРЅС‹ СЃ РЅРµС‡РµС‚РЅРѕР№ СЃС‚РµРїРµРЅСЊСЋ, С‚Рѕ РµСЃС‚СЊ РЅР°С€Рµ С„РёРєС‚РёРІРЅРѕРµ СЂРµР±СЂРѕ
     {
         for (int i = 0; i + 1 < res.size(); i++)
         {
@@ -147,13 +147,13 @@ void result()
     bool Euler = true;
     for (vector<int> vert : l_Adj)
     {
-        if (vert.size() != 0) // осталось ребро, значит граф зациклен
+        if (vert.size() != 0) // РѕСЃС‚Р°Р»РѕСЃСЊ СЂРµР±СЂРѕ, Р·РЅР°С‡РёС‚ РіСЂР°С„ Р·Р°С†РёРєР»РµРЅ
         {
             Euler = false;
             break;
         }
     }
-    if (Euler) // вывод пути Эйлера
+    if (Euler) // РІС‹РІРѕРґ РїСѓС‚Рё Р­Р№Р»РµСЂР°
         for (int i : res)
             cout << i << ' ';
 }

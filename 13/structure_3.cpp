@@ -10,7 +10,7 @@ struct Fraction
     int den;
 };
 
-void reduce(Fraction &a) //сокращение 
+void reduce(Fraction &a) //СЃРѕРєСЂР°С‰РµРЅРёРµ 
 {
     int copyOfNum = a.num;
     int copyOfDen = a.den;
@@ -22,7 +22,7 @@ void reduce(Fraction &a) //сокращение
     a.den /= copyOfDen;
 }
 
-Fraction sum(Fraction a, Fraction b)//сумма
+Fraction sum(Fraction a, Fraction b)//СЃСѓРјРјР°
 {
     Fraction c;
     c.num = a.num * b.den + b.num * a.den;
@@ -32,7 +32,7 @@ Fraction sum(Fraction a, Fraction b)//сумма
     return c;
 }
 
-Fraction substraction(Fraction a, Fraction b)//разность
+Fraction substraction(Fraction a, Fraction b)//СЂР°Р·РЅРѕСЃС‚СЊ
 {
     Fraction c;
     c.num = a.num * b.den - b.num * a.den;
@@ -42,7 +42,7 @@ Fraction substraction(Fraction a, Fraction b)//разность
     return c;
 }
 
-Fraction multiplication(Fraction a, Fraction b)// умножение
+Fraction multiplication(Fraction a, Fraction b)// СѓРјРЅРѕР¶РµРЅРёРµ
 {
     Fraction c;
     c.num = a.num * b.num;
@@ -52,7 +52,7 @@ Fraction multiplication(Fraction a, Fraction b)// умножение
     return c;
 }
 
-Fraction division(Fraction a, Fraction b) // деление
+Fraction division(Fraction a, Fraction b) // РґРµР»РµРЅРёРµ
 {
     Fraction c;
     c.num = a.num * b.den;
@@ -62,7 +62,7 @@ Fraction division(Fraction a, Fraction b) // деление
     return c;
 }
 
-Fraction str2drob(string str_drob) // строка в дробь
+Fraction str2drob(string str_drob) // СЃС‚СЂРѕРєР° РІ РґСЂРѕР±СЊ
 {
     Fraction droby;
     string num_cache;
@@ -164,7 +164,7 @@ int main()
             cout << drob_3.num << '/' << drob_3.den << endl;
         break;
     }
-    case 's': // сокращение
+    case 's': // СЃРѕРєСЂР°С‰РµРЅРёРµ
     {
         cout << drob_1.num << '/' << drob_1.den << " = ";
         if (drob_1.num > 0)
@@ -177,7 +177,7 @@ int main()
             cout << drob_1.num << '/' << drob_1.den << endl;
         break;
     }
-    case 'd': // десятичная
+    case 'd': // РґРµСЃСЏС‚РёС‡РЅР°СЏ
     {
         cout << drob_1.num << '/' << drob_1.den << " = ";
         if (drob_1.num == drob_1.den)
@@ -186,7 +186,7 @@ int main()
             cout << (drob_1.num) * 1.0 / drob_1.den << endl;
         break;
     }
-    case 'p': // правильная
+    case 'p': // РїСЂР°РІРёР»СЊРЅР°СЏ
     {
         cout << drob_1.num << '/' << drob_1.den << " = ";
         if (drob_1.num == drob_1.den)

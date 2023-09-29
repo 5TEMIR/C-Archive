@@ -4,7 +4,7 @@
 
 using namespace std;
 
-struct Hotel // структура отеля
+struct Hotel // СЃС‚СЂСѓРєС‚СѓСЂР° РѕС‚РµР»СЏ
 {
     string f, i, o;
     int day, month, year;
@@ -12,12 +12,12 @@ struct Hotel // структура отеля
 };
 
 bool vis(int y)
-{ // високосный год
+{ // РІРёСЃРѕРєРѕСЃРЅС‹Р№ РіРѕРґ
     return ((y % 4 == 0 && y % 100 != 0) || y % 400 == 0);
 }
 
 int EndOfMonth(int m, int y)
-{ // конец месяца
+{ // РєРѕРЅРµС† РјРµСЃСЏС†Р°
     switch (m)
     {
     case 1:
@@ -43,7 +43,7 @@ int EndOfMonth(int m, int y)
     }
 }
 
-bool date_correct(int d, int m, int y) //корректность даты
+bool date_correct(int d, int m, int y) //РєРѕСЂСЂРµРєС‚РЅРѕСЃС‚СЊ РґР°С‚С‹
 {
     if (d > 0 && d <= EndOfMonth(m, y) && m > 0 && m <= 12 && y > 0)
         return true;
@@ -51,12 +51,12 @@ bool date_correct(int d, int m, int y) //корректность даты
         return false;
 }
 
-// счетчик дней
+// СЃС‡РµС‚С‡РёРє РґРЅРµР№
 int countday(int day1, int month1, int year1, int day2, int month2, int year2)
 {
     int sum1 = 0, sum2 = 0, count = 0;
 
-    // дата 1
+    // РґР°С‚Р° 1
     for (int i = 0; i < (year1 - 1); i++)
     {
         if (i % 4 != 0)
@@ -74,7 +74,7 @@ int countday(int day1, int month1, int year1, int day2, int month2, int year2)
         sum1 += EndOfMonth(j + 1, year1);
     }
     sum1 += day1;
-    // дата 2
+    // РґР°С‚Р° 2
     for (int i = 0; i < (year2 - 1); i++)
     {
         if (i % 4 != 0)
@@ -106,12 +106,12 @@ int main()
     {
         list_of_guests.push_back(People);
         cout << "FIO: ";
-        cin >> list_of_guests[i].f >> list_of_guests[i].i >> list_of_guests[i].o; //фио
+        cin >> list_of_guests[i].f >> list_of_guests[i].i >> list_of_guests[i].o; //С„РёРѕ
         bool correct = false;
         do
         {
             cout << "DATE dd mm yyyy: ";
-            cin >> list_of_guests[i].day >> list_of_guests[i].month >> list_of_guests[i].year; // дата прибытия
+            cin >> list_of_guests[i].day >> list_of_guests[i].month >> list_of_guests[i].year; // РґР°С‚Р° РїСЂРёР±С‹С‚РёСЏ
             if (date_correct(list_of_guests[i].day, list_of_guests[i].month, list_of_guests[i].year))
                 correct = true;
             else
@@ -128,7 +128,7 @@ int main()
     {
         cout << "DATE CHECK dd mm yyyy: ";
         cin >> day >> month >> year;
-        if (date_correct(day, month, year)) // дата проверки
+        if (date_correct(day, month, year)) // РґР°С‚Р° РїСЂРѕРІРµСЂРєРё
             correct = true;
         else
             cout << "INCORRECT" << endl;
@@ -136,7 +136,7 @@ int main()
 
     for (int i = 0; i < number_guests; i++)
     {
-        int days_in_hotel = countday(list_of_guests[i].day, list_of_guests[i].month, list_of_guests[i].year, day, month, year); //количество дней до даты меньше чем количество дней в отеле значит человек в отеле
+        int days_in_hotel = countday(list_of_guests[i].day, list_of_guests[i].month, list_of_guests[i].year, day, month, year); //РєРѕР»РёС‡РµСЃС‚РІРѕ РґРЅРµР№ РґРѕ РґР°С‚С‹ РјРµРЅСЊС€Рµ С‡РµРј РєРѕР»РёС‡РµСЃС‚РІРѕ РґРЅРµР№ РІ РѕС‚РµР»Рµ Р·РЅР°С‡РёС‚ С‡РµР»РѕРІРµРє РІ РѕС‚РµР»Рµ
         if (days_in_hotel <= list_of_guests[i].days && days_in_hotel >= 0)
             cout << list_of_guests[i].f << ' ' << list_of_guests[i].i << ' ' << list_of_guests[i].o << endl;
     }

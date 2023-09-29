@@ -86,9 +86,9 @@ int task5()
     cout << "n = ";
     cin >> n;
     if ((((~n) | 1) & n) == 0)
-        cout << "×åòíîå" << endl;
+        cout << "Ğ§ĞµÑ‚Ğ½Ğ¾Ğµ" << endl;
     else
-        cout << "Íå÷åòíîå" << endl;
+        cout << "ĞĞµÑ‡ĞµÑ‚Ğ½Ğ¾Ğµ" << endl;
     return 0;
 }
 

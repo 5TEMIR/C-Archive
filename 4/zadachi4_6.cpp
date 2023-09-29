@@ -23,7 +23,7 @@ int main()
         a *= x / i;
         if (a == 0)
         {
-            cout << "Ğÿä ğàñõîäÿùèéñÿ";
+            cout << "Ğ ÑĞ´ Ñ€Ğ°ÑÑ…Ğ¾Ğ´ÑÑ‰Ğ¸Ğ¹ÑÑ";
             break;
         }
         cout << left << setw(3) << i << "\t| " << setw(10) << a << "\t| " << setw(10) << S << endl;

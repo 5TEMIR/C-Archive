@@ -6,7 +6,7 @@
 
 using namespace std;
 
-bool isnumber(string str) // проверка строки число
+bool isnumber(string str) // РїСЂРѕРІРµСЂРєР° СЃС‚СЂРѕРєРё С‡РёСЃР»Рѕ
 {
     bool number = true;
     for (int i = 0; i < str.length(); i++)
@@ -28,28 +28,28 @@ int main()
     text += " ";
     int digit, begin, end, pos = 0;
 
-    begin = text.find_first_of("0123456789"); // находим первое число
+    begin = text.find_first_of("0123456789"); // РЅР°С…РѕРґРёРј РїРµСЂРІРѕРµ С‡РёСЃР»Рѕ
     end = text.find_first_of(' ', begin);
     digit = stoi(text.substr(begin, end - begin));
     cout << digit << "\n\n";
 
     map<string, int> count;
-    while (pos < text.length() - 1) // считаем количество слов
+    while (pos < text.length() - 1) // СЃС‡РёС‚Р°РµРј РєРѕР»РёС‡РµСЃС‚РІРѕ СЃР»РѕРІ
     {
         if (text.find_first_not_of("0123456789 ", pos) != -1)
         {
             begin = text.find_first_not_of(' ', pos); //
-            end = text.find_first_of(' ', begin);     // собираем слово
+            end = text.find_first_of(' ', begin);     // СЃРѕР±РёСЂР°РµРј СЃР»РѕРІРѕ
             word = text.substr(begin, end - begin);   //
             if (!isnumber(word))
-                count[word] += 1; // числа не надо считать, только слова
+                count[word] += 1; // С‡РёСЃР»Р° РЅРµ РЅР°РґРѕ СЃС‡РёС‚Р°С‚СЊ, С‚РѕР»СЊРєРѕ СЃР»РѕРІР°
             pos += word.length() + 1;
         }
         else
             break;
     }
 
-    for (auto iter = count.begin(); iter != count.end(); iter++) // сравниваем количество слов с первым числом
+    for (auto iter = count.begin(); iter != count.end(); iter++) // СЃСЂР°РІРЅРёРІР°РµРј РєРѕР»РёС‡РµСЃС‚РІРѕ СЃР»РѕРІ СЃ РїРµСЂРІС‹Рј С‡РёСЃР»РѕРј
         if (iter->second == digit)
             cout << iter->first << ": " << iter->second << " ";
 

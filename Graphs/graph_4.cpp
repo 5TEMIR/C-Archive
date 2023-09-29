@@ -7,7 +7,7 @@
 
 using namespace std;
 
-vector<vector<int>> input_adj_list(int N) // создание списка смежности
+vector<vector<int>> input_adj_list(int N) // СЃРѕР·РґР°РЅРёРµ СЃРїРёСЃРєР° СЃРјРµР¶РЅРѕСЃС‚Рё
 {
     ifstream in("input.txt");
     vector<vector<int>> Gr;
@@ -29,7 +29,7 @@ vector<vector<int>> input_adj_list(int N) // создание списка смежности
     return Gr;
 }
 
-void output_adj_list(vector<vector<int>> Gr) // вывод списка смежности
+void output_adj_list(vector<vector<int>> Gr) // РІС‹РІРѕРґ СЃРїРёСЃРєР° СЃРјРµР¶РЅРѕСЃС‚Рё
 {
     for (int i = 0; i < Gr.size(); i++)
     {
@@ -50,57 +50,57 @@ int used[N];
 vector<vector<int>> cycles;
 vector<vector<int>> cycles_sort;
 
-void add_cycles(int start, int end) // добавление цикла в векторы
+void add_cycles(int start, int end) // РґРѕР±Р°РІР»РµРЅРёРµ С†РёРєР»Р° РІ РІРµРєС‚РѕСЂС‹
 {
-    int cur = end; // переменная для перебора
+    int cur = end; // РїРµСЂРµРјРµРЅРЅР°СЏ РґР»СЏ РїРµСЂРµР±РѕСЂР°
     vector<int> tmp;
     while (cur != start)
     {
-        tmp.push_back(cur); // начинаем перебирать предков
-        cur = pr[cur];      // и запоминаем путь
+        tmp.push_back(cur); // РЅР°С‡РёРЅР°РµРј РїРµСЂРµР±РёСЂР°С‚СЊ РїСЂРµРґРєРѕРІ
+        cur = pr[cur];      // Рё Р·Р°РїРѕРјРёРЅР°РµРј РїСѓС‚СЊ
     }
     tmp.push_back(start);
-    reverse(tmp.begin(), tmp.end()); // приводим путь в прямой порядок
-    cycles.push_back(tmp);           // оригинальный цикл
+    reverse(tmp.begin(), tmp.end()); // РїСЂРёРІРѕРґРёРј РїСѓС‚СЊ РІ РїСЂСЏРјРѕР№ РїРѕСЂСЏРґРѕРє
+    cycles.push_back(tmp);           // РѕСЂРёРіРёРЅР°Р»СЊРЅС‹Р№ С†РёРєР»
     sort(tmp.begin(), tmp.end());
-    cycles_sort.push_back(tmp); // отсортированный цикл
+    cycles_sort.push_back(tmp); // РѕС‚СЃРѕСЂС‚РёСЂРѕРІР°РЅРЅС‹Р№ С†РёРєР»
 }
 
 void find_cycles(int x)
 {
-    used[x] = 1; // пометили вершину
+    used[x] = 1; // РїРѕРјРµС‚РёР»Рё РІРµСЂС€РёРЅСѓ
     for (int i = 0; i < Gr[x].size(); i++)
     {
-        if (pr[Gr[x][i]] == x) // вершина Gr[x][i] является предком x
-            continue;          // пропускаем
+        if (pr[Gr[x][i]] == x) // РІРµСЂС€РёРЅР° Gr[x][i] СЏРІР»СЏРµС‚СЃСЏ РїСЂРµРґРєРѕРј x
+            continue;          // РїСЂРѕРїСѓСЃРєР°РµРј
         if (used[Gr[x][i]] == 0)
-        {                          // есть не посещенная вершина
-            pr[Gr[x][i]] = x;      // помечаем предка
-            find_cycles(Gr[x][i]); // ищем цикл начиная с неё
+        {                          // РµСЃС‚СЊ РЅРµ РїРѕСЃРµС‰РµРЅРЅР°СЏ РІРµСЂС€РёРЅР°
+            pr[Gr[x][i]] = x;      // РїРѕРјРµС‡Р°РµРј РїСЂРµРґРєР°
+            find_cycles(Gr[x][i]); // РёС‰РµРј С†РёРєР» РЅР°С‡РёРЅР°СЏ СЃ РЅРµС‘
         }
-        else if (used[Gr[x][i]] == 1) // уже посещали
-            add_cycles(Gr[x][i], x);  // запоминаем цикл
+        else if (used[Gr[x][i]] == 1) // СѓР¶Рµ РїРѕСЃРµС‰Р°Р»Рё
+            add_cycles(Gr[x][i], x);  // Р·Р°РїРѕРјРёРЅР°РµРј С†РёРєР»
     }
-    used[x] = 0; // очищаем помеченные вершины, выходя из рекурсии
+    used[x] = 0; // РѕС‡РёС‰Р°РµРј РїРѕРјРµС‡РµРЅРЅС‹Рµ РІРµСЂС€РёРЅС‹, РІС‹С…РѕРґСЏ РёР· СЂРµРєСѓСЂСЃРёРё
 }
 
-void result() // нахождение циклов
+void result() // РЅР°С…РѕР¶РґРµРЅРёРµ С†РёРєР»РѕРІ
 {
     output_adj_list(Gr);
 
-    for (int i = 0; i < N; i++) // заполняем вспомогающие массивы
+    for (int i = 0; i < N; i++) // Р·Р°РїРѕР»РЅСЏРµРј РІСЃРїРѕРјРѕРіР°СЋС‰РёРµ РјР°СЃСЃРёРІС‹
     {
         pr[i] = -1;
         used[i] = 0;
     }
-    find_cycles(0); // находим циклы начиная с нуля
+    find_cycles(0); // РЅР°С…РѕРґРёРј С†РёРєР»С‹ РЅР°С‡РёРЅР°СЏ СЃ РЅСѓР»СЏ
 
     map<vector<int>, int> CYCLES;
     for (int i = 0; i < cycles_sort.size(); i++)
     {
-        if (cycles_sort[i].size() > 2 && CYCLES.count(cycles_sort[i]) == 0) // цикл не состоит из одного ребра
+        if (cycles_sort[i].size() > 2 && CYCLES.count(cycles_sort[i]) == 0) // С†РёРєР» РЅРµ СЃРѕСЃС‚РѕРёС‚ РёР· РѕРґРЅРѕРіРѕ СЂРµР±СЂР°
         {
-            CYCLES[cycles_sort[i]] = i; // запоминаем номера нужных векторов, используя отсортированные циклы
+            CYCLES[cycles_sort[i]] = i; // Р·Р°РїРѕРјРёРЅР°РµРј РЅРѕРјРµСЂР° РЅСѓР¶РЅС‹С… РІРµРєС‚РѕСЂРѕРІ, РёСЃРїРѕР»СЊР·СѓСЏ РѕС‚СЃРѕСЂС‚РёСЂРѕРІР°РЅРЅС‹Рµ С†РёРєР»С‹
         }
     }
     for (auto it = CYCLES.begin(); it != CYCLES.end(); it++)
@@ -109,7 +109,7 @@ void result() // нахождение циклов
         cout << "cycle: ";
         for (int j = 0; j < cycles[i].size(); j++)
         {
-            cout << cycles[i][j] << ' '; // зная номера нужных вектором, выводим сами же циклы
+            cout << cycles[i][j] << ' '; // Р·РЅР°СЏ РЅРѕРјРµСЂР° РЅСѓР¶РЅС‹С… РІРµРєС‚РѕСЂРѕРј, РІС‹РІРѕРґРёРј СЃР°РјРё Р¶Рµ С†РёРєР»С‹
         }
         cout << endl;
     }

@@ -2,7 +2,7 @@
 using namespace std;
 
 template <typename X>
-X **create(X c, int n, int m) //создание
+X **create(X c, int n, int m) //СЃРѕР·РґР°РЅРёРµ
 {
     X **massive = new X *[n];
     for (int i = 0; i < n; i++)
@@ -18,7 +18,7 @@ X **create(X c, int n, int m) //создание
 }
 
 template <typename X>
-X *create_x_str(X c, int m) //создание
+X *create_x_str(X c, int m) //СЃРѕР·РґР°РЅРёРµ
 {
     X *massive = new X[m];
     for (int i = 0; i < m; i++)
@@ -31,7 +31,7 @@ X *create_x_str(X c, int m) //создание
 }
 
 template <typename X>
-void print(X **massive, int n, int m) //вывод
+void print(X **massive, int n, int m) //РІС‹РІРѕРґ
 {
     for (int i = 0; i < n; i++, cout << endl)
         for (int j = 0; j < m; j++)
@@ -40,7 +40,7 @@ void print(X **massive, int n, int m) //вывод
 }
 
 template <typename X>
-void print_x_str(X *massive, int m) //вывод
+void print_x_str(X *massive, int m) //РІС‹РІРѕРґ
 {
     for (int j = 0; j < m; j++)
         cout << massive[j] << " ";
@@ -48,7 +48,7 @@ void print_x_str(X *massive, int m) //вывод
 }
 
 template <typename X>
-X **change(X **massive, int n, int m, X *massive_x_str) //преобразование
+X **change(X **massive, int n, int m, X *massive_x_str) //РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ
 {
     for (int i = 0; i < n; i++)
     {
@@ -72,7 +72,7 @@ int main()
     char c;
     do
     {
-        cout << "Введите тип:\n1 - int\n2 - double\n3 - char\n4 - float\n";
+        cout << "Р’РІРµРґРёС‚Рµ С‚РёРї:\n1 - int\n2 - double\n3 - char\n4 - float\n";
         int k;
         cin >> k;
         switch (k)
@@ -130,10 +130,10 @@ int main()
             break;
         }
         default:
-            cout << "Неправильно введены данные\n";
+            cout << "РќРµРїСЂР°РІРёР»СЊРЅРѕ РІРІРµРґРµРЅС‹ РґР°РЅРЅС‹Рµ\n";
         }
-        cout << "Еще раз? Y - да, N - нет\n";
-        cin >> c; // повторяем запуск программы пока не введем N
+        cout << "Р•С‰Рµ СЂР°Р·? Y - РґР°, N - РЅРµС‚\n";
+        cin >> c; // РїРѕРІС‚РѕСЂСЏРµРј Р·Р°РїСѓСЃРє РїСЂРѕРіСЂР°РјРјС‹ РїРѕРєР° РЅРµ РІРІРµРґРµРј N
     } while (c != 'N');
     return 0;
 }

@@ -11,7 +11,7 @@ ifstream in("input.txt");
 ofstream out("output.txt");
 
 vector<vector<int>> inFile()
-{ // ввод из файла
+{ // РІРІРѕРґ РёР· С„Р°Р№Р»Р°
     vector<vector<int>> x;
     vector<int> temp;
     char symbol;

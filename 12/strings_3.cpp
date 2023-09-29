@@ -1,4 +1,4 @@
-// Дано предложение. Вывести слова, содержащие наибольшее количество различных букв.
+// Р”Р°РЅРѕ РїСЂРµРґР»РѕР¶РµРЅРёРµ. Р’С‹РІРµСЃС‚Рё СЃР»РѕРІР°, СЃРѕРґРµСЂР¶Р°С‰РёРµ РЅР°РёР±РѕР»СЊС€РµРµ РєРѕР»РёС‡РµСЃС‚РІРѕ СЂР°Р·Р»РёС‡РЅС‹С… Р±СѓРєРІ.
 
 // Niccol Paganini was born in Genoa on 27 October 1782, the third of the six children of Antonio and Teresa Paganini.
 
@@ -8,7 +8,7 @@
 
 using namespace std;
 
-int dif_num(string s) // количество различных букв
+int dif_num(string s) // РєРѕР»РёС‡РµСЃС‚РІРѕ СЂР°Р·Р»РёС‡РЅС‹С… Р±СѓРєРІ
 {
     int k, p;
     int l = s.length();
@@ -36,11 +36,11 @@ int main()
         if (!isalpha(str[i]))
         {
             count = dif_num(word_cache);
-            if (count > max_word) // нахождение макс кол различных букв
+            if (count > max_word) // РЅР°С…РѕР¶РґРµРЅРёРµ РјР°РєСЃ РєРѕР» СЂР°Р·Р»РёС‡РЅС‹С… Р±СѓРєРІ
                 max_word = count;
             word_cache.clear();
         }
-        else if (isalpha(str[i])) // составление слова
+        else if (isalpha(str[i])) // СЃРѕСЃС‚Р°РІР»РµРЅРёРµ СЃР»РѕРІР°
             word_cache += str[i];
     }
     cout << "WORDS:" << endl;

@@ -5,7 +5,7 @@
 
 using namespace std;
 
-map<int, list<int>> input_adj_list() // создание списка смежности
+map<int, list<int>> input_adj_list() // СЃРѕР·РґР°РЅРёРµ СЃРїРёСЃРєР° СЃРјРµР¶РЅРѕСЃС‚Рё
 {
     ifstream in("input.txt");
     map<int, list<int>> l_Adj;
@@ -33,7 +33,7 @@ map<int, list<int>> input_adj_list() // создание списка смежности
     return l_Adj;
 }
 
-void output_adj_list(map<int, list<int>> l_Adj) // вывод списка смежности
+void output_adj_list(map<int, list<int>> l_Adj) // РІС‹РІРѕРґ СЃРїРёСЃРєР° СЃРјРµР¶РЅРѕСЃС‚Рё
 {
     for (auto it = l_Adj.begin(); it != l_Adj.end(); it++)
     {
@@ -45,7 +45,7 @@ void output_adj_list(map<int, list<int>> l_Adj) // вывод списка смежности
     cout << endl;
 }
 
-void result(map<int, list<int>> &l_Adj, int A, int B) // Вставить в граф ребро, соединяющее вершины A и B
+void result(map<int, list<int>> &l_Adj, int A, int B) // Р’СЃС‚Р°РІРёС‚СЊ РІ РіСЂР°С„ СЂРµР±СЂРѕ, СЃРѕРµРґРёРЅСЏСЋС‰РµРµ РІРµСЂС€РёРЅС‹ A Рё B
 {
     if (!l_Adj.count(A) || !l_Adj.count(A))
         return;

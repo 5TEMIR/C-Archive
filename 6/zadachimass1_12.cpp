@@ -1,12 +1,12 @@
 #include <iostream>
 using namespace std;
 
-int **create(int n, int m) //создание массива
+int **create(int n, int m) //СЃРѕР·РґР°РЅРёРµ РјР°СЃСЃРёРІР°
 {
-    int **massive = new int *[n]; //выделение памяти под массив
+    int **massive = new int *[n]; //РІС‹РґРµР»РµРЅРёРµ РїР°РјСЏС‚Рё РїРѕРґ РјР°СЃСЃРёРІ
     for (int i = 0; i < n; i++)
         massive[i] = new int[m];
-    for (int i = 0; i < n; i++) //заполняем массив
+    for (int i = 0; i < n; i++) //Р·Р°РїРѕР»РЅСЏРµРј РјР°СЃСЃРёРІ
         for (int j = 0; j < m; j++)
         {
             cout << "massive[" << i << "][";
@@ -18,7 +18,7 @@ int **create(int n, int m) //создание массива
     return massive;
 }
 
-void print(int **massive, int n, int m) //вывод массива на экран
+void print(int **massive, int n, int m) //РІС‹РІРѕРґ РјР°СЃСЃРёРІР° РЅР° СЌРєСЂР°РЅ
 {
     for (int i = 0; i < n; i++, cout << endl)
         for (int j = 0; j < m; j++)
@@ -26,10 +26,10 @@ void print(int **massive, int n, int m) //вывод массива на экран
     cout << endl;
 }
 
-void change(int **a, int n, int m) //преобразование массива
+void change(int **a, int n, int m) //РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ РјР°СЃСЃРёРІР°
 {
-    int min = a[0][0], max = a[0][0];               //нач. знач. для min, max
-    int n_min = 0, n_max = 0, m_min = 0, m_max = 0; //номера строк
+    int min = a[0][0], max = a[0][0];               //РЅР°С‡. Р·РЅР°С‡. РґР»СЏ min, max
+    int n_min = 0, n_max = 0, m_min = 0, m_max = 0; //РЅРѕРјРµСЂР° СЃС‚СЂРѕРє
     for (int i = 0; i < n; i++)
     {
         for (int j = 0; j < m - i; j++)
@@ -56,13 +56,13 @@ void change(int **a, int n, int m) //преобразование массива
 
 int main()
 {
-    int n, m; //размерность массива
+    int n, m; //СЂР°Р·РјРµСЂРЅРѕСЃС‚СЊ РјР°СЃСЃРёРІР°
     cout << "n = ";
     cin >> n;
     cout << "m = ";
     cin >> m;
-    int **massive = create(n, m); //создание массива
-    print(massive, n, m);         //вывод на экран
+    int **massive = create(n, m); //СЃРѕР·РґР°РЅРёРµ РјР°СЃСЃРёРІР°
+    print(massive, n, m);         //РІС‹РІРѕРґ РЅР° СЌРєСЂР°РЅ
     change(massive, n, m);
     print(massive, n, m);
     return 0;

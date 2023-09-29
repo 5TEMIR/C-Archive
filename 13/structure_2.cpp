@@ -3,7 +3,7 @@
 
 using namespace std;
 
-struct point // структура точки
+struct point // СЃС‚СЂСѓРєС‚СѓСЂР° С‚РѕС‡РєРё
 {
     float x;
     float y;
@@ -11,7 +11,7 @@ struct point // структура точки
 
 float dist(float x1, float y1, float x2, float y2)
 {
-    return (sqrt(abs(x1 - x2) * abs(x1 - x2) + abs(y1 - y2) * abs(y1 - y2))); //дистанция по формуле
+    return (sqrt(abs(x1 - x2) * abs(x1 - x2) + abs(y1 - y2) * abs(y1 - y2))); //РґРёСЃС‚Р°РЅС†РёСЏ РїРѕ С„РѕСЂРјСѓР»Рµ
 }
 int main()
 {
@@ -26,12 +26,12 @@ int main()
         cout << i + 1 << " x,y: ";
         cin >> a[i].x >> a[i].y;
     }
-    for (int i = 0; i < n; i++) // перебор всех точек
+    for (int i = 0; i < n; i++) // РїРµСЂРµР±РѕСЂ РІСЃРµС… С‚РѕС‡РµРє
     {
         float sm = 0;
         for (int j = 0; j < n; j++)
         {
-            sm += dist(a[i].x, a[i].y, a[j].x, a[j].y); // сумма расстояний
+            sm += dist(a[i].x, a[i].y, a[j].x, a[j].y); // СЃСѓРјРјР° СЂР°СЃСЃС‚РѕСЏРЅРёР№
         }
         if (sm > ans)
         {

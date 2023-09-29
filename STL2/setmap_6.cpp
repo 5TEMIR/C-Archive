@@ -10,7 +10,7 @@ int main()
 {
     string text;
     cout << "TEXT: ";
-    getline(cin, text); // ввод строки
+    getline(cin, text); // РІРІРѕРґ СЃС‚СЂРѕРєРё
 
     set<string> vopr_vosk, pov, result;
     string razd = "!?.", temp, word;
@@ -19,12 +19,12 @@ int main()
 
     while (pos < text.length() - 1)
     {
-        k = text.find_first_of(razd, pos); // находим предложение и знак
+        k = text.find_first_of(razd, pos); // РЅР°С…РѕРґРёРј РїСЂРµРґР»РѕР¶РµРЅРёРµ Рё Р·РЅР°Рє
         tmp = text[k];
         temp = text.substr(pos, k - pos);
         temp += " ";
         pos1 = 0;
-        while (pos1 < temp.length() - 1) // перебираем каждое слово предложения
+        while (pos1 < temp.length() - 1) // РїРµСЂРµР±РёСЂР°РµРј РєР°Р¶РґРѕРµ СЃР»РѕРІРѕ РїСЂРµРґР»РѕР¶РµРЅРёСЏ
         {
             k1 = temp.find_first_of(' ', pos1);
             word = temp.substr(pos1, k1 - pos1);
@@ -32,7 +32,7 @@ int main()
             switch (tmp)
             {
             case '.':
-                pov.insert(word); // добовляем слово в нужное множество
+                pov.insert(word); // РґРѕР±РѕРІР»СЏРµРј СЃР»РѕРІРѕ РІ РЅСѓР¶РЅРѕРµ РјРЅРѕР¶РµСЃС‚РІРѕ
                 break;
             case '!':
             case '?':
@@ -44,11 +44,11 @@ int main()
         pos += temp.length() + 1;
     }
 
-    set_difference(pov.begin(), pov.end(), vopr_vosk.begin(), vopr_vosk.end(), inserter(result, result.begin())); // слова которые встречаются только в повест предл
+    set_difference(pov.begin(), pov.end(), vopr_vosk.begin(), vopr_vosk.end(), inserter(result, result.begin())); // СЃР»РѕРІР° РєРѕС‚РѕСЂС‹Рµ РІСЃС‚СЂРµС‡Р°СЋС‚СЃСЏ С‚РѕР»СЊРєРѕ РІ РїРѕРІРµСЃС‚ РїСЂРµРґР»
 
     razd = "!?. ";
     map<string, int> count;
-    for (auto iter = result.begin(); iter != result.end(); iter++) //подсчитываем слова
+    for (auto iter = result.begin(); iter != result.end(); iter++) //РїРѕРґСЃС‡РёС‚С‹РІР°РµРј СЃР»РѕРІР°
     {
         pos = 0;
         count[*iter] = 0;
