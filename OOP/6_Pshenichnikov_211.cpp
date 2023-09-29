@@ -252,7 +252,7 @@ public:
         }
     }
 
-    void execute(int oper) // выполнения заданной операции над каждым элементом списка.
+    void execute(int oper) // выполнения заданной операции над каждым элементом списка
     {
         node *r = head;
         switch (oper)
@@ -343,7 +343,7 @@ int main()
     cout << s3;
     s3.ProtectDiplom();
 
-    student s4(20222651, 3, "Пшеничников Михаил Николаевич");
+    student s4(20222650, 3, "Пшеничников Михаил Николаевич");
 
     List group;
     group.push(&s1);
